@@ -1,0 +1,32 @@
+name: Integracion Continua - Calidad y Pruebas
+
+on:
+  push:
+    branches: ["main"]
+
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  ejecutar-pruebas:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Descargar codigo del repositorio
+        uses: actions/checkout@v4
+
+      - name: Configurar Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Instalar dependencias
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Verificar calidad de codigo con Ruff
+        run: python -m ruff check .
+
+      - name: Ejecutar pruebas con Pytest
+        run: python -m pytest -v
