@@ -1,4 +1,3 @@
-import pytest
 from src.dominio.validacion_precios import validar_precio_y_cantidad
 
 
