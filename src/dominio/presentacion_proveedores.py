@@ -1,21 +1,19 @@
-"""Preparación de datos para visualizar proveedores."""
+"""Preparación de resultados para tablas de proveedores."""
 
 
-def preparar_tabla(proveedores):
+def preparar_tabla(proveedores: list[dict]) -> list[dict]:
+    """Ordena proveedores por tarifa y asigna posiciones."""
+
     ordenados = sorted(
         proveedores,
         key=lambda proveedor: proveedor["tarifa"],
     )
 
-    resultado = []
-
-    for posicion, proveedor in enumerate(ordenados, start=1):
-        resultado.append(
-            {
-                "posicion": posicion,
-                "nombre": proveedor["nombre"],
-                "tarifa": proveedor["tarifa"],
-            }
-        )
-
-    return resultado
+    return [
+        {
+            "posicion": posicion,
+            "nombre": proveedor["nombre"],
+            "tarifa": proveedor["tarifa"],
+        }
+        for posicion, proveedor in enumerate(ordenados, start=1)
+    ]
