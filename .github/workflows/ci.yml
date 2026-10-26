@@ -3,7 +3,6 @@ name: Integracion Continua - Calidad y Pruebas
 on:
   push:
     branches: ["main"]
-
   pull_request:
     branches: ["main"]
 
@@ -30,3 +29,6 @@ jobs:
 
       - name: Ejecutar pruebas con Pytest
         run: python -m pytest -v
+
+      - name: Construir imagen Docker para verificar empaquetado
+        run: docker build -t proyecto-mep:ci .
