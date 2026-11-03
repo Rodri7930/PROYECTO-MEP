@@ -37,7 +37,9 @@ class RepositorioTarifas:
         )
 
     def listar(self) -> list[dict]:
-        return [dict(fila) for fila in self.session.execute(self._consulta()).mappings()]
+        return [
+            dict(fila) for fila in self.session.execute(self._consulta()).mappings()
+        ]
 
     def obtener(self, id_tarifa: int) -> dict | None:
         consulta = self._consulta().where(Tarifa.id_tarifa == id_tarifa)

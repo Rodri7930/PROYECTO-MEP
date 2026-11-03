@@ -9,11 +9,16 @@ from src.servicios.consulta_tarifas import comparar_tarifas
 
 
 def guardar_oferta(db_session, codigo, precio, moneda="PEN"):
-    proveedor = Proveedor(id_proveedor=codigo, nombre=f"Hotel {codigo}",
-                          tipo_servicio="Hospedaje")
+    proveedor = Proveedor(
+        id_proveedor=codigo, nombre=f"Hotel {codigo}", tipo_servicio="Hospedaje"
+    )
     servicio = Servicio(nombre="Habitacion doble", categoria="Alojamiento")
-    tarifa = Tarifa(precio_referencial=Decimal(precio), moneda=moneda,
-                    temporada="regular", personas_min=1)
+    tarifa = Tarifa(
+        precio_referencial=Decimal(precio),
+        moneda=moneda,
+        temporada="regular",
+        personas_min=1,
+    )
     servicio.tarifas.append(tarifa)
     proveedor.servicios.append(servicio)
     db_session.add(proveedor)
@@ -41,8 +46,11 @@ def test_pbi03_ordena_datos_recuperados_desde_la_base(db_session):
     guardar_oferta(db_session, "PROV002", "80.00")
     guardar_oferta(db_session, "PROV003", "10.00", moneda="USD")
     resultado = comparar_tarifas(
-        RepositorioTarifas(db_session), categoria="Alojamiento",
-        temporada="regular", moneda="PEN", pasajeros=2,
+        RepositorioTarifas(db_session),
+        categoria="Alojamiento",
+        temporada="regular",
+        moneda="PEN",
+        pasajeros=2,
         fecha=date(2026, 11, 20),
     )
     assert [x["id_proveedor"] for x in resultado] == ["PROV002", "PROV001"]
