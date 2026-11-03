@@ -1,9 +1,10 @@
 """PBI-03: consulta, filtra y ordena tarifas referenciales."""
 
-from src.servicios.puertos import CatalogoTarifas
-from src.dominio.seleccion_tarifas import filtrar_tarifas_aplicables
-from src.dominio.comparacion_proveedores import ordenar_proveedores
 from datetime import date
+
+from src.dominio.comparacion_proveedores import ordenar_proveedores
+from src.dominio.seleccion_tarifas import filtrar_tarifas_aplicables
+from src.servicios.puertos import CatalogoTarifas
 
 
 def comparar_tarifas(catalogo: CatalogoTarifas, *, categoria: str,
