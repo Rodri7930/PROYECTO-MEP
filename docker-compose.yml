@@ -1,0 +1,20 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: proyecto_mep_app
+    volumes:
+      - .:/app
+    environment:
+      - PYTHONUNBUFFERED=1
+    command: python main.py
+
+  test:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: proyecto_mep_test
+    volumes:
+      - .:/app
+    command: pytest -v

@@ -1,7 +1,8 @@
 def validar_precio_y_cantidad(precio: float, cantidad: int) -> dict:
     """Valida que el precio no sea negativo y la cantidad sea un entero positivo.
 
-    Retorna un diccionario indicando si los valores son válidos y el mensaje correspondiente.
+    Retorna un diccionario indicando si los valores son válidos
+    y el mensaje correspondiente.
     """
     if precio < 0:
         return {"valido": False, "mensaje": "El precio no puede ser negativo"}
