@@ -16,6 +16,8 @@ def comparar_tarifas(
     moneda: str,
     pasajeros: int,
     fecha: date,
+    tarifa_maxima: Decimal | None = None,
+    cantidad: int | None = None,
 ) -> list[dict]:
     """Reutiliza la comparacion original con datos de cualquier catalogo."""
     aplicables = filtrar_tarifas_aplicables(
@@ -26,9 +28,14 @@ def comparar_tarifas(
         pasajeros=pasajeros,
         fecha=fecha,
     )
-    return ordenar_proveedores(aplicables)
+    ordenadas = ordenar_proveedores(aplicables)
+    return limitar_resultados(
+        ordenadas,
+        tarifa_maxima=tarifa_maxima,
+        cantidad=cantidad,
+    )
 def limitar_resultados(
-    opciones: list[dict], *, tarifa_maxima: Decimal | None, cantidad: int
+    opciones: list[dict], *, tarifa_maxima: Decimal | None, cantidad: int | None
 ) -> list[dict]:
     """Selecciona las primeras opciones ordenadas que cumplen el presupuesto."""
     if tarifa_maxima is not None:
