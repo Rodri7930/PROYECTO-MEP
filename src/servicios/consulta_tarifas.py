@@ -1,6 +1,7 @@
 """PBI-03: consulta, filtra y ordena tarifas referenciales."""
 
 from datetime import date
+from decimal import Decimal
 
 from src.dominio.comparacion_proveedores import ordenar_proveedores
 from src.dominio.seleccion_tarifas import filtrar_tarifas_aplicables
@@ -26,3 +27,11 @@ def comparar_tarifas(
         fecha=fecha,
     )
     return ordenar_proveedores(aplicables)
+def limitar_resultados(
+    opciones: list[dict], *, tarifa_maxima: Decimal | None, cantidad: int
+) -> list[dict]:
+    """Selecciona las primeras opciones ordenadas que cumplen el presupuesto."""
+    if tarifa_maxima is not None:
+        opciones = [opcion for opcion in opciones if opcion["tarifa"] <= tarifa_maxima]
+
+    return opciones[:cantidad]
