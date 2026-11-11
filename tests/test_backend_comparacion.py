@@ -104,3 +104,28 @@ def test_catalogo_vacio_devuelve_lista_vacia():
 def test_rechaza_numero_de_pasajeros_invalido(pasajeros):
     with pytest.raises(ValueError, match="pasajeros"):
         comparar([], pasajeros=pasajeros)
+@pytest.mark.parametrize(
+    ("cantidad", "esperados"),
+    [
+        (3, [3, 4, 2]),
+        (5, [3, 4, 2, 5]),
+    ],
+)
+def test_consulta_aplica_presupuesto_y_cantidad(cantidad, esperados):
+    ofertas = [
+        oferta(1, "120.00", moneda="USD"),
+        oferta(2, "95.00", moneda="USD"),
+        oferta(3, "80.00", moneda="USD"),
+        oferta(4, "90.00", moneda="USD"),
+        oferta(5, "100.00", moneda="USD"),
+        oferta(6, "50.00", moneda="PEN"),
+    ]
+
+    resultado = comparar(
+        ofertas,
+        moneda="USD",
+        tarifa_maxima=Decimal("100.00"),
+        cantidad=cantidad,
+    )
+
+    assert [opcion["id_tarifa"] for opcion in resultado] == esperados
