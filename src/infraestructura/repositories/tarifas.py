@@ -45,3 +45,11 @@ class RepositorioTarifas:
         consulta = self._consulta().where(Tarifa.id_tarifa == id_tarifa)
         fila = self.session.execute(consulta).mappings().first()
         return None if fila is None else dict(fila)
+
+
+    def guardar(self, tarifa: Tarifa) -> Tarifa:
+        """Guarda una tarifa y confirma la transaccion."""
+        self.session.add(tarifa)
+        self.session.commit()
+        self.session.refresh(tarifa)
+        return tarifa
