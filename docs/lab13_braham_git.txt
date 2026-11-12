@@ -1,0 +1,11 @@
+﻿Rama actual:
+feature/DB-persistencia-tarifas-lab13
+Ultimos 8 commits:
+95de7d3 feat: implementar persistencia SQLite de tarifas
+23a1312 test: verificar persistencia de tarifas en SQLite
+570ee9f Merge pull request #26 from Rodri7930/docs/erd-magic-experiences
+e2991b3 docs: agregar diagrama ERD del proyecto
+5f4c573 Merge pull request #25 from Rodri7930/chore/devops-docker-ruff-ci
+174ea17 chore: sincronizar con main y conectar main.py para ejecucion en Docker
+066aae9 Merge pull request #24 from Rodri7930/feature/BE-integracion-PBI03-PBI04
+b276b65 chore: configurar Docker, reglas de linter Ruff y validacion en pipeline CI
