@@ -36,7 +36,7 @@ def test_personalizar_muestra_campos():
     assert "Destino principal" in contenido
     assert "Duración" in contenido
     assert "Pasajeros" in contenido
-    assert "Observaciones" in contenido
+    assert "Cambio solicitado" in contenido
 
 
 def test_personalizar_muestra_acciones():
