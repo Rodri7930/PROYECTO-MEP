@@ -1,5 +1,6 @@
 
 {% extends "ui/base.html" %}
+{% load static %}
 
 {% block titulo %}
 Nuevo itinerario | Magic Experiences Perú
@@ -35,8 +36,18 @@ Nuevo itinerario | Magic Experiences Perú
                 name="paquete"
                 class="campo-formulario"
                 required>
-                <option value="">
-                    Seleccionar paquete turístico
+                <option
+                    value="machu-picchu-clasico"
+                    data-destino="Cusco · Machu Picchu"
+                    data-duracion="5">
+                    Machu Picchu Clásico
+                </option>
+
+                <option
+                    value="valle-sagrado"
+                    data-destino="Cusco · Valle Sagrado"
+                    data-duracion="3">
+                    Valle Sagrado
                 </option>
             </select>
         </div>
@@ -75,6 +86,7 @@ Nuevo itinerario | Magic Experiences Perú
         <div class="acciones-formulario">
             <button
                 type="button"
+                id="guardar-itinerario"
                 class="boton-principal"
                 disabled>
                 Guardar
@@ -87,8 +99,17 @@ Nuevo itinerario | Magic Experiences Perú
             </a>
         </div>
 
+        <p id="mensaje-itinerario"
+            class="descripcion-formulario"
+            role="status"
+            aria-live="polite"
+            hidden>
+        </p>
+
     </form>
 
 </section>
+
+<script src="{% static 'ui/js/itinerarios_formulario.js' %}" defer></script>
 
 {% endblock %}
