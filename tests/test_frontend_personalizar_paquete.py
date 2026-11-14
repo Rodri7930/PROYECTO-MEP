@@ -64,3 +64,51 @@ def test_personalizar_no_confirma_registro_sin_guardar():
     contenido = respuesta.content.decode()
 
     assert "registrado exitosamente" not in contenido.lower()
+
+
+def test_personalizar_muestra_campos_de_personalizacion():
+    cliente = Client()
+    respuesta = cliente.get("/reservas/personalizar/")
+    contenido = respuesta.content.decode()
+
+    assert "Cliente o referencia" in contenido
+    assert "Cambio solicitado" in contenido
+    assert "DATOS DE PERSONALIZACIÓN" in contenido
+    assert "DATOS DEL PAQUETE" in contenido
+
+
+def test_personalizar_requiere_cliente_y_cambio():
+    from src.ui.forms import PersonalizarPaqueteForm
+
+    formulario = PersonalizarPaqueteForm(
+        data={
+            "nombre": "Cusco Cultural",
+            "destino": "cusco",
+            "duracion": 3,
+            "pasajeros": 2,
+            "cliente_referencia": "",
+            "cambio_solicitado": "",
+        }
+    )
+
+    assert not formulario.is_valid()
+    assert "cliente_referencia" in formulario.errors
+    assert "cambio_solicitado" in formulario.errors
+
+
+def test_personalizar_nombre_paquete_es_selector():
+    cliente = Client()
+    respuesta = cliente.get("/reservas/personalizar/")
+    contenido = respuesta.content.decode()
+
+    assert 'name="nombre"' in contenido
+    assert '<select name="nombre"' in contenido
+
+
+def test_personalizar_tiene_controles_de_cantidad():
+    cliente = Client()
+    respuesta = cliente.get("/reservas/personalizar/")
+    contenido = respuesta.content.decode()
+
+    assert 'data-accion="sumar"' in contenido
+    assert 'data-accion="restar"' in contenido
