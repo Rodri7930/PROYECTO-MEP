@@ -69,6 +69,12 @@ body {
     background: #24583d;
 }
 
+.enlace-menu.activo {
+    background: var(--naranja);
+    color: var(--blanco);
+    font-weight: 700;
+}
+
 .area-principal {
     flex: 1;
     min-width: 0;
@@ -239,9 +245,7 @@ body {
 }
 
 
-/* ========================================
-   RESERVAS - MAGIC EXPERIENCES PERÚ
-   ======================================== */
+/* RESERVAS - MAGIC EXPERIENCES PERÚ*/
 
 .seccion-reservas {
     margin-bottom: 35px;
@@ -298,9 +302,7 @@ body {
 }
 
 
-/* ==========================================
-   FORMULARIO NUEVO PAQUETE
-   ========================================== */
+/*FORMULARIO NUEVO PAQUETE*/
 
 .seccion-formulario {
     max-width: 850px;
@@ -435,5 +437,112 @@ body {
 
     .acciones-formulario {
         flex-direction: column;
+    }
+}
+
+
+/* ITINERARIOS - MAGIC EXPERIENCES PERÚ */
+
+.seccion-itinerarios {
+    max-width: 1100px;
+}
+
+.seccion-itinerarios .titulo-pagina {
+    margin-bottom: 24px;
+}
+
+.cuadricula-itinerarios {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.tarjeta-itinerario {
+    background: var(--blanco);
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.imagen-itinerario {
+    height: 140px;
+    background: #dfe4e1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #788d85;
+    font-size: 14px;
+}
+
+.detalle-itinerario {
+    padding: 20px;
+}
+
+.detalle-itinerario h2 {
+    color: var(--verde-titulo);
+    font-size: 18px;
+    margin: 0 0 14px;
+}
+
+.detalle-itinerario p {
+    color: #111111;
+    font-size: 14px;
+    margin: 0 0 10px;
+}
+
+.detalle-itinerario .duracion-itinerario {
+    color: var(--verde-titulo);
+    margin-bottom: 14px;
+}
+
+.boton-itinerario {
+    display: inline-block;
+    padding: 8px 14px;
+    font-size: 13px;
+    font-weight: 400;
+    cursor: default;
+}
+
+.nota-itinerarios {
+    margin-top: 24px;
+    color: #666666;
+    font-size: 13px;
+}
+
+.enlace-nuevo-itinerario {
+    display: inline-block;
+    margin-top: 8px;
+    color: var(--verde-titulo);
+    font-size: 14px;
+}
+
+@media (max-width: 850px) {
+    .cuadricula-itinerarios {
+        grid-template-columns: 1fr;
+    }
+}
+
+.cabecera-itinerarios {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 24px;
+}
+
+.cabecera-itinerarios .titulo-pagina {
+    margin: 0;
+}
+
+.cabecera-itinerarios .boton-principal {
+    display: inline-block;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+@media (max-width: 600px) {
+    .cabecera-itinerarios {
+        flex-direction: column;
+        align-items: flex-start;
     }
 }

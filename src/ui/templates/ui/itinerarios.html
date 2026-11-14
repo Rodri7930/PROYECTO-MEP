@@ -1,12 +1,56 @@
+
 {% extends "ui/base.html" %}
 
+{% block titulo %}Itinerarios | Magic Experiences Perú{% endblock %}
+
 {% block contenido %}
-<section class="panel-itinerarios">
-    <h1>Itinerarios</h1>
-    <p>Organiza y consulta los itinerarios de los paquetes turísticos.</p>
+<section class="seccion-itinerarios">
 
-    <a href="#" class="boton-principal">Nuevo itinerario</a>
+    <div class="cabecera-itinerarios">
+        <h1 class="titulo-pagina">Itinerarios</h1>
 
-    <p>Aún no hay itinerarios registrados.</p>
+        <a href="#" class="boton-principal">
+            Nuevo itinerario
+        </a>
+    </div>
+
+    <div class="cuadricula-itinerarios">
+
+        <!-- Tarjeta demostrativa 1 -->
+        <article class="tarjeta-itinerario">
+            <div class="imagen-itinerario">
+                <span>Imagen del itinerario</span>
+            </div>
+
+            <div class="detalle-itinerario">
+                <h2>Machu Picchu Clásico</h2>
+                <p>Cusco · Machu Picchu</p>
+                <p class="duracion-itinerario">5 días</p>
+
+                <span class="boton-principal boton-itinerario">
+                    Ver itinerario
+                </span>
+            </div>
+        </article>
+
+        <!-- Tarjeta demostrativa 2 -->
+        <article class="tarjeta-itinerario">
+            <div class="imagen-itinerario">
+                <span>Imagen del itinerario</span>
+            </div>
+
+            <div class="detalle-itinerario">
+                <h2>Valle Sagrado</h2>
+                <p>Cusco · Valle Sagrado</p>
+                <p class="duracion-itinerario">3 días</p>
+
+                <span class="boton-principal boton-itinerario">
+                    Ver itinerario
+                </span>
+            </div>
+        </article>
+
+    </div>
+
 </section>
 {% endblock %}

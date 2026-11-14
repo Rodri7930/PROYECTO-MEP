@@ -17,12 +17,32 @@
             </div>
 
             <nav class="navegacion" aria-label="Menú principal">
-                <a href="/" class="enlace-menu">Inicio</a>
-                <a href="/reservas/" class="enlace-menu">Reservas</a>
-                <a href="/itinerarios/" class="enlace-menu">Itinerarios</a>
-                <a href="/clientes/" class="enlace-menu">Clientes</a>
-                <a href="/reportes/" class="enlace-menu">Reportes</a>
+                <a href="/"
+                class="enlace-menu {% if request.path == '/' %}activo{% endif %}">
+                    Inicio
+                </a>
+
+                <a href="/reservas/"
+                class="enlace-menu {% if request.path|slice:':10' == '/reservas/' %}activo{% endif %}">
+                    Reservas
+                </a>
+
+                <a href="/itinerarios/"
+                class="enlace-menu {% if request.path|slice:':13' == '/itinerarios/' %}activo{% endif %}">
+                    Itinerarios
+                </a>
+
+                <a href="/clientes/"
+                class="enlace-menu {% if request.path|slice:':10' == '/clientes/' %}activo{% endif %}">
+                    Clientes
+                </a>
+
+                <a href="/reportes/"
+                class="enlace-menu {% if request.path|slice:':10' == '/reportes/' %}activo{% endif %}">
+                    Reportes
+                </a>
             </nav>
+
         </aside>
 
         <div class="area-principal">
@@ -39,4 +59,3 @@
     </div>
 </body>
 </html>
-
