@@ -46,6 +46,8 @@ def personalizar_paquete(request):
         },
     )
 
+def nuevo_itinerario(request):
+    return render(request, "ui/nuevo_itinerario.html")
 
 urlpatterns = [
     path("", inicio, name="inicio"),
@@ -58,5 +60,6 @@ urlpatterns = [
 
     ),
     path("itinerarios/", itinerarios, name="itinerarios"),
-    
+    path("itinerarios/nuevo/", nuevo_itinerario, name="nuevo_itinerario"),
+
 ]
