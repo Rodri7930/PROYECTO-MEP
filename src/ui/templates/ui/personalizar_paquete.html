@@ -1,6 +1,7 @@
 
 {% extends "ui/base.html" %}
 
+{% load static %}
 {% block titulo %}Personalizar paquete | Magic Experiences Perú{% endblock %}
 
 {% block contenido %}
@@ -100,23 +101,5 @@
     </form>
 </section>
 
-<script>
-document.querySelectorAll(".boton-cantidad").forEach((boton) => {
-    boton.addEventListener("click", () => {
-        const campo = document.getElementById(boton.dataset.campo);
-
-        if (!campo) return;
-
-        const valor = Number(campo.value) || 1;
-
-        if (boton.dataset.accion === "sumar") {
-            campo.value = valor + 1;
-        } else {
-            campo.value = Math.max(1, valor - 1);
-        }
-
-        campo.dispatchEvent(new Event("change", { bubbles: true }));
-    });
-});
-</script>
+<script src="{% static 'ui/js/controles_cantidad.js' %}" defer></script>
 {% endblock %}

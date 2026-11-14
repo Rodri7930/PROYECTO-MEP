@@ -343,16 +343,16 @@ body {
 .campo-formulario {
     width: 100%;
     box-sizing: border-box;
-    background: #424747;
-    color: #ffffff;
-    border: 1px solid #626969;
+    background: #f1f4f2;
+    color: #111111;
+    border: 1px solid #dce4df;
     border-radius: 7px;
     padding: 12px 14px;
     font-size: 15px;
 }
 
 .campo-formulario::placeholder {
-    color: #d3d7d7;
+    color: #6b7280;
 }
 
 .campo-formulario:focus {
