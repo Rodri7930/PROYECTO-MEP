@@ -546,3 +546,102 @@ body {
         align-items: flex-start;
     }
 }
+
+.modal-itinerario {
+    width: min(90%, 560px);
+    max-height: 85vh;
+    padding: 0;
+    border: none;
+    border-radius: 17px;
+    background: var(--blanco);
+    color: var(--texto);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.18);
+}
+
+.modal-itinerario::backdrop {
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.contenido-modal-itinerario {
+    padding: 22px;
+}
+
+.contenido-modal-itinerario .titulo-pagina {
+    font-size: 20px;
+    margin: 0 0 18px;
+}
+
+.contenido-modal-itinerario .subtitulo {
+    font-size: 15px;
+    margin: 16px 0;
+}
+
+.contenido-modal-itinerario .tarjeta {
+    padding: 0;
+    margin: 0 0 15px;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    background: transparent;
+}
+
+.contenido-modal-itinerario .tarjeta h3 {
+    display: inline;
+    color: var(--verde-titulo);
+    font-size: 14px;
+}
+
+.contenido-modal-itinerario .tarjeta h4 {
+    display: none;
+}
+
+.contenido-modal-itinerario .tarjeta p {
+    display: inline;
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--texto);
+}
+
+.acciones-modal-itinerario {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 20px;
+}
+
+.acciones-modal-itinerario button {
+    background: var(--blanco);
+    color: #333333;
+    border: 1px solid #dce4df;
+    border-radius: 8px;
+    padding: 10px 18px;
+    font-weight: 400;
+}
+
+.acciones-modal-itinerario button:hover {
+    background: #f5f6f4;
+}
+
+@media (max-width: 600px) {
+    .contenido-modal-itinerario {
+        padding: 20px;
+    }
+}
+
+/* Resumen de días dentro del modal */
+
+.resumen-itinerario h2 {
+    color: var(--verde-titulo);
+    font-size: 20px;
+    margin: 0 0 20px;
+}
+
+.resumen-itinerario p {
+    color: var(--texto);
+    font-size: 14px;
+    line-height: 1.6;
+    margin: 0 0 16px;
+}
+
+.resumen-itinerario p strong {
+    color: var(--verde-titulo);
+}

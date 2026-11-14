@@ -1,5 +1,6 @@
 
 {% extends "ui/base.html" %}
+{% load static %}
 
 {% block titulo %}Itinerarios | Magic Experiences Perú{% endblock %}
 
@@ -27,10 +28,12 @@
                 <p>Cusco · Machu Picchu</p>
                 <p class="duracion-itinerario">5 días</p>
 
-                <a href="{% url 'detalle_itinerario' %}"
-                     class="boton-principal boton-itinerario">
-                         Ver itinerario
-                </a>
+               <button
+                    type="button"
+                    class="boton-principal boton-itinerario"
+                    data-abrir-itinerario="modal-machu-picchu">
+                    Ver itinerario
+                </button>
             </div>
         </article>
 
@@ -53,5 +56,29 @@
 
     </div>
 
+    <!-- Modal de Machu Picchu Clásico -->
+    <dialog
+        id="modal-machu-picchu"
+        class="modal-itinerario"
+        aria-label="Detalle de Machu Picchu Clásico">
+
+        <div class="contenido-modal-itinerario">
+
+            {% include "ui/detalle_itinerario.html" %}
+
+            <div class="acciones-modal-itinerario">
+                <button
+                    type="button"
+                    class="boton-principal"
+                    data-cerrar-itinerario>
+                    Cerrar
+                </button>
+            </div>
+
+        </div>
+    </dialog>
+
 </section>
+
+<script src="{% static 'ui/js/modal_itinerarios.js' %}" defer></script>
 {% endblock %}

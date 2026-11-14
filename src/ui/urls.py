@@ -46,8 +46,6 @@ def personalizar_paquete(request):
         },
     )
 
-def detalle_itinerario(request):
-    return render(request, "ui/detalle_itinerario.html")
 
 urlpatterns = [
     path("", inicio, name="inicio"),
@@ -60,9 +58,5 @@ urlpatterns = [
 
     ),
     path("itinerarios/", itinerarios, name="itinerarios"),
-    path(
-        "itinerarios/machu-picchu-clasico/",
-        detalle_itinerario,
-        name="detalle_itinerario",
-    ),
+    
 ]

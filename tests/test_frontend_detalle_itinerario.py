@@ -11,34 +11,37 @@ os.environ.setdefault(
 django.setup()
 
 
-def test_detalle_itinerario_disponible():
+def test_modal_itinerario_disponible():
     cliente = Client()
-    respuesta = cliente.get("/itinerarios/machu-picchu-clasico/")
+    respuesta = cliente.get("/itinerarios/")
 
     assert respuesta.status_code == 200
+    assert 'id="modal-machu-picchu"' in respuesta.content.decode()
 
 
-def test_detalle_itinerario_muestra_informacion():
+def test_modal_muestra_informacion():
     cliente = Client()
-    respuesta = cliente.get("/itinerarios/machu-picchu-clasico/")
+    respuesta = cliente.get("/itinerarios/")
     contenido = respuesta.content.decode()
 
     assert "Machu Picchu Clásico" in contenido
     assert "5 días" in contenido
 
 
-def test_detalle_itinerario_muestra_actividades():
+def test_modal_muestra_cinco_dias():
     cliente = Client()
-    respuesta = cliente.get("/itinerarios/machu-picchu-clasico/")
+    respuesta = cliente.get("/itinerarios/")
     contenido = respuesta.content.decode()
 
-    assert "Día 1" in contenido
-    assert "Actividades" in contenido
+    for dia in range(1, 6):
+        assert f"Día {dia}:" in contenido
 
 
-def test_detalle_itinerario_permite_regresar():
+def test_modal_tiene_controles():
     cliente = Client()
-    respuesta = cliente.get("/itinerarios/machu-picchu-clasico/")
+    respuesta = cliente.get("/itinerarios/")
     contenido = respuesta.content.decode()
 
-    assert "Volver a itinerarios" in contenido
+    assert 'data-abrir-itinerario="modal-machu-picchu"' in contenido
+    assert "data-cerrar-itinerario" in contenido
+    assert "Cerrar" in contenido
