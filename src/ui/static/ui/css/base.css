@@ -1,0 +1,136 @@
+
+:root {
+    --verde-principal: #103925;
+    --verde-titulo: #17633c;
+    --naranja: #f28c28;
+    --fondo: #f5f6f4;
+    --blanco: #ffffff;
+    --texto: #202020;
+    --borde: #dddddd;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    color: var(--texto);
+    background: var(--fondo);
+}
+
+.aplicacion {
+    display: flex;
+    min-height: 100vh;
+}
+
+.menu-lateral {
+    width: 250px;
+    min-height: 100vh;
+    background: var(--verde-principal);
+    color: var(--blanco);
+    padding: 30px 20px;
+    flex-shrink: 0;
+}
+
+.marca {
+    text-align: center;
+    margin-bottom: 45px;
+}
+
+.marca h2 {
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.marca p {
+    font-size: 13px;
+    letter-spacing: 3px;
+}
+
+.navegacion {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.enlace-menu {
+    display: block;
+    color: var(--blanco);
+    text-decoration: none;
+    padding: 13px 16px;
+    border-radius: 7px;
+    transition: background 0.2s;
+}
+
+.enlace-menu:hover,
+.enlace-menu:focus-visible {
+    background: #24583d;
+}
+
+.area-principal {
+    flex: 1;
+    min-width: 0;
+}
+
+.encabezado {
+    min-height: 75px;
+    background: var(--blanco);
+    border-bottom: 1px solid var(--borde);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    padding: 20px 35px;
+}
+
+.usuario {
+    font-size: 14px;
+    color: #555555;
+}
+
+.contenido {
+    padding: 35px;
+}
+
+.titulo-pagina {
+    color: var(--verde-titulo);
+    font-size: 28px;
+    margin-top: 0;
+}
+
+.boton-principal {
+    background: var(--naranja);
+    color: var(--blanco);
+    border: none;
+    padding: 12px 22px;
+    border-radius: 7px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.boton-principal:hover {
+    background: #dc7817;
+}
+
+@media (max-width: 700px) {
+    .aplicacion {
+        flex-direction: column;
+    }
+
+    .menu-lateral {
+        width: 100%;
+        min-height: auto;
+    }
+
+    .navegacion {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .encabezado,
+    .contenido {
+        padding: 20px;
+    }
+}

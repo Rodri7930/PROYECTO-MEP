@@ -1,0 +1,41 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block titulo %}Magic Experiences Perú{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'ui/css/base.css' %}">
+</head>
+<body>
+    <div class="aplicacion">
+        <aside class="menu-lateral">
+            <div class="marca">
+                <h2>MAGIC EXPERIENCES</h2>
+                <p>PERÚ</p>
+            </div>
+
+            <nav class="navegacion" aria-label="Menú principal">
+                <a href="/" class="enlace-menu">Inicio</a>
+                <a href="/reservas/" class="enlace-menu">Reservas</a>
+                <a href="/itinerarios/" class="enlace-menu">Itinerarios</a>
+                <a href="/clientes/" class="enlace-menu">Clientes</a>
+                <a href="/reportes/" class="enlace-menu">Reportes</a>
+            </nav>
+        </aside>
+
+        <div class="area-principal">
+            <header class="encabezado">
+                <span>Panel de gestión</span>
+                <span class="usuario">Magic Experiences Perú</span>
+            </header>
+
+            <main class="contenido">
+                {% block contenido %}
+                {% endblock %}
+            </main>
+        </div>
+    </div>
+</body>
+</html>
