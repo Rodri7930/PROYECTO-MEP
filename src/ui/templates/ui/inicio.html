@@ -4,11 +4,65 @@
 {% block titulo %}Inicio | Magic Experiences Perú{% endblock %}
 
 {% block contenido %}
-    <h1 class="titulo-pagina">Bienvenido a Magic Experiences Perú</h1>
 
-    <p>Sistema interno de gestión de paquetes turísticos y reservas.</p>
+<section class="bienvenida">
+    <h1 class="titulo-pagina">Inicio</h1>
+    <p>
+        Bienvenido al sistema interno de gestión de
+        Magic Experiences Perú.
+    </p>
+</section>
 
-    <button type="button" class="boton-principal">
-        Nuevo paquete
-    </button>
+<section class="seccion-inicio">
+    <h2 class="subtitulo">Accesos rápidos</h2>
+
+    <div class="tarjetas-acceso">
+        <article class="tarjeta">
+            <h3>Nuevo paquete</h3>
+            <p>
+                Crea una nueva propuesta turística
+                para tus clientes.
+            </p>
+            <a href="/reservas/nuevo/" class="boton-principal">
+                Nuevo paquete
+            </a>
+        </article>
+
+        <article class="tarjeta">
+            <h3>Personalizar paquete</h3>
+            <p>
+                Configura los servicios y características
+                de una propuesta turística.
+            </p>
+            <a href="/reservas/personalizar/" class="boton-principal">
+                Personalizar paquete
+            </a>
+        </article>
+    </div>
+</section>
+
+<section class="seccion-inicio">
+    <h2 class="subtitulo">Trabajos recientes</h2>
+
+    <div class="contenedor-tabla">
+        <table class="tabla-trabajos">
+            <thead>
+                <tr>
+                    <th>Paquete</th>
+                    <th>Próxima tarea</th>
+                    <th>Estado</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td colspan="3" class="tabla-vacia">
+                        Todavía no hay trabajos recientes registrados.
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
 {% endblock %}
