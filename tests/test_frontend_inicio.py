@@ -48,3 +48,33 @@ def test_inicio_muestra_boton_nuevo_paquete():
     respuesta = cliente.get("/")
 
     assert "Nuevo paquete" in respuesta.content.decode()
+
+def test_inicio_muestra_acceso_personalizar():
+    cliente = Client()
+
+    respuesta = cliente.get("/")
+    contenido = respuesta.content.decode()
+
+    assert "Personalizar paquete" in contenido
+
+
+def test_inicio_muestra_tabla_trabajos_recientes():
+    cliente = Client()
+
+    respuesta = cliente.get("/")
+    contenido = respuesta.content.decode()
+
+    assert "Trabajos recientes" in contenido
+    assert "Paquete" in contenido
+    assert "Próxima tarea" in contenido
+    assert "Estado" in contenido
+
+
+def test_inicio_muestra_enlaces_a_paquetes():
+    cliente = Client()
+
+    respuesta = cliente.get("/")
+    contenido = respuesta.content.decode()
+
+    assert 'href="/reservas/nuevo/"' in contenido
+    assert 'href="/reservas/personalizar/"' in contenido
