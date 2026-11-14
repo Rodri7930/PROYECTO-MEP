@@ -296,3 +296,144 @@ body {
         align-items: stretch;
     }
 }
+
+
+/* ==========================================
+   FORMULARIO NUEVO PAQUETE
+   ========================================== */
+
+.seccion-formulario {
+    max-width: 850px;
+    margin: 0 auto;
+}
+
+.cabecera-formulario {
+    margin-bottom: 28px;
+}
+
+.descripcion-formulario {
+    color: #222222;
+    line-height: 1.6;
+    margin-top: 10px;
+}
+
+.formulario-paquete {
+    background: #ffffff;
+    border: 1px solid #e0e5e0;
+    border-radius: 12px;
+    padding: 32px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.05);
+}
+
+.grupo-campo {
+    margin-bottom: 24px;
+}
+
+.grupo-campo label {
+    display: block;
+    color: #111111;
+    font-weight: 600;
+    margin-bottom: 9px;
+}
+
+.campo-obligatorio {
+    color: #d35400;
+}
+
+.campo-formulario {
+    width: 100%;
+    box-sizing: border-box;
+    background: #424747;
+    color: #ffffff;
+    border: 1px solid #626969;
+    border-radius: 7px;
+    padding: 12px 14px;
+    font-size: 15px;
+}
+
+.campo-formulario::placeholder {
+    color: #d3d7d7;
+}
+
+.campo-formulario:focus {
+    outline: 2px solid #f28c28;
+    outline-offset: 2px;
+}
+
+.control-cantidad {
+    display: flex;
+    align-items: stretch;
+    gap: 8px;
+    max-width: 280px;
+}
+
+.control-cantidad .campo-formulario {
+    flex: 1;
+    min-width: 0;
+    text-align: center;
+}
+
+.boton-cantidad {
+    background: #f28c28;
+    color: #ffffff;
+    border: none;
+    border-radius: 7px;
+    width: 44px;
+    min-height: 44px;
+    font-size: 22px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.boton-cantidad:hover {
+    background: #db7715;
+}
+
+.acciones-formulario {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-top: 32px;
+}
+
+.acciones-formulario .boton-principal,
+.acciones-formulario .boton-secundario {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 44px;
+    padding: 0 24px;
+    border-radius: 7px;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.acciones-formulario .boton-principal {
+    background: #f28c28;
+    color: #ffffff;
+    border: none;
+}
+
+.acciones-formulario .boton-secundario {
+    background: #e7e9e7;
+    color: #222222;
+    border: 1px solid #cbd1cb;
+}
+
+.errores-campo {
+    color: #b42318;
+    font-size: 13px;
+    margin-top: 7px;
+}
+
+@media (max-width: 600px) {
+    .formulario-paquete {
+        padding: 20px;
+    }
+
+    .acciones-formulario {
+        flex-direction: column;
+    }
+}
