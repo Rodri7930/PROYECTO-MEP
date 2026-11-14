@@ -5,17 +5,23 @@
 
 {% block contenido %}
 <section class="seccion-reservas">
-    <h1 class="titulo-pagina">Reservas</h1>
-    <p>Gestiona las propuestas y paquetes turísticos en preparación.</p>
+    <div class="cabecera-reservas">
+        <div>
+            <h1 class="titulo-pagina">Reservas</h1>
+            <p class="descripcion-reservas">
+                Gestiona las propuestas y paquetes turísticos en preparación.
+            </p>
+        </div>
 
-    <div class="acciones-reservas">
-        <a href="/reservas/nuevo/" class="boton-principal">
-            Nuevo paquete
-        </a>
+        <div class="acciones-reservas">
+            <a href="/reservas/nuevo/" class="boton-principal">
+                Nuevo paquete
+            </a>
 
-        <a href="/reservas/personalizar/" class="boton-principal">
-            Personalizar paquete
-        </a>
+            <a href="/reservas/personalizar/" class="boton-principal">
+                Personalizar paquete
+            </a>
+        </div>
     </div>
 </section>
 
@@ -26,12 +32,13 @@
         <table class="tabla-trabajos">
             <thead>
                 <tr>
-                    <th>Paquete</th>
-                    <th>Tipo</th>
-                    <th>Estado</th>
-                    <th>Acción</th>
+                    <th scope="col">Paquete</th>
+                    <th scope="col">Tipo</th>
+                    <th scope="col">Estado</th>
+                    <th scope="col">Acción</th>
                 </tr>
             </thead>
+
             <tbody>
                 <tr>
                     <td colspan="4" class="tabla-vacia">

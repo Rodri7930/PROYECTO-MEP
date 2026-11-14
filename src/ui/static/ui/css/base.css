@@ -237,3 +237,62 @@ body {
         padding: 22px;
     }
 }
+
+
+/* ========================================
+   RESERVAS - MAGIC EXPERIENCES PERÚ
+   ======================================== */
+
+.seccion-reservas {
+    margin-bottom: 35px;
+}
+
+.cabecera-reservas {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 24px;
+}
+
+.cabecera-reservas .titulo-pagina {
+    margin-bottom: 12px;
+}
+
+.descripcion-reservas {
+    color: #333333;
+    font-size: 15px;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.acciones-reservas {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 14px;
+}
+
+.acciones-reservas .boton-principal {
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+@media (max-width: 850px) {
+    .cabecera-reservas {
+        flex-direction: column;
+    }
+
+    .acciones-reservas {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .acciones-reservas {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}
