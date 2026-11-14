@@ -1,0 +1,51 @@
+
+{% extends "ui/base.html" %}
+
+{% block titulo %}Nuevo paquete | Magic Experiences Perú{% endblock %}
+
+{% block contenido %}
+<section class="seccion-formulario">
+    <h1 class="titulo-pagina">Nuevo paquete turístico</h1>
+
+    <p>
+        Completa los datos iniciales para preparar una
+        nueva propuesta turística.
+    </p>
+
+    <form method="post" class="formulario-paquete">
+        {% csrf_token %}
+
+        {% if form.non_field_errors %}
+            <div role="alert">
+                {{ form.non_field_errors }}
+            </div>
+        {% endif %}
+
+        {% for campo in form %}
+            <div class="grupo-campo">
+                <label for="{{ campo.id_for_label }}">
+                    {{ campo.label }}
+                </label>
+
+                {{ campo }}
+
+                {% if campo.errors %}
+                    <div class="errores-campo" role="alert">
+                        {{ campo.errors }}
+                    </div>
+                {% endif %}
+            </div>
+        {% endfor %}
+
+        <div class="acciones-formulario">
+            <button type="submit" class="boton-principal">
+                Registrar
+            </button>
+
+            <a href="/reservas/" class="boton-secundario">
+                Cancelar
+            </a>
+        </div>
+    </form>
+</section>
+{% endblock %}
