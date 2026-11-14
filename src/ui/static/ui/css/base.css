@@ -134,3 +134,106 @@ body {
         padding: 20px;
     }
 }
+
+/* INICIO - MAGIC EXPERIENCES PERÚ */
+
+.bienvenida {
+    margin-bottom: 35px;
+}
+
+.bienvenida p {
+    color: #333333;
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+.seccion-inicio {
+    margin-bottom: 35px;
+}
+
+.subtitulo {
+    color: var(--verde-titulo);
+    font-size: 21px;
+    font-weight: 700;
+    margin: 0 0 20px;
+}
+
+.tarjetas-acceso {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+}
+
+.tarjeta {
+    background: var(--blanco);
+    border: 1px solid #e3e5e3;
+    border-radius: 12px;
+    padding: 28px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.05);
+}
+
+.tarjeta h3 {
+    color: var(--verde-titulo);
+    font-size: 19px;
+    margin: 0 0 12px;
+}
+
+.tarjeta p {
+    color: #333333;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+.tarjeta .boton-principal {
+    display: inline-block;
+    text-decoration: none;
+    text-align: center;
+}
+
+.contenedor-tabla {
+    background: var(--blanco);
+    border: 1px solid #e3e5e3;
+    border-radius: 12px;
+    overflow-x: auto;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.05);
+}
+
+.tabla-trabajos {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.tabla-trabajos thead {
+    background: #e8f0e9;
+}
+
+.tabla-trabajos th {
+    color: var(--verde-titulo);
+    font-size: 14px;
+    font-weight: 700;
+    padding: 17px 20px;
+}
+
+.tabla-trabajos td {
+    color: var(--texto);
+    font-size: 14px;
+    padding: 18px 20px;
+    border-top: 1px solid #e8e8e8;
+}
+
+.tabla-vacia {
+    color: #666666 !important;
+    text-align: center;
+    padding: 35px 20px !important;
+}
+
+@media (max-width: 850px) {
+    .tarjetas-acceso {
+        grid-template-columns: 1fr;
+    }
+
+    .tarjeta {
+        padding: 22px;
+    }
+}
