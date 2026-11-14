@@ -4,17 +4,10 @@
 {% block titulo %}Personalizar paquete | Magic Experiences Perú{% endblock %}
 
 {% block contenido %}
-<section class="seccion-formulario">
-    <div class="cabecera-formulario">
-        <h1 class="titulo-pagina">Personalizar paquete</h1>
+<section class="pantalla-personalizar">
+    <h1 class="titulo-pagina">Personalizar paquete turístico</h1>
 
-        <p class="descripcion-formulario">
-            Configura una propuesta turística según las preferencias
-            y necesidades del cliente.
-        </p>
-    </div>
-
-    <form method="post" class="formulario-paquete">
+    <form method="post" class="formulario-personalizar">
         {% csrf_token %}
 
         {% if form.non_field_errors %}
@@ -23,46 +16,77 @@
             </div>
         {% endif %}
 
-        {% for campo in form %}
-            <div class="grupo-campo">
-                <label for="{{ campo.id_for_label }}">
-                    {{ campo.label }}
-                    {% if campo.field.required %}
-                        <span class="campo-obligatorio">*</span>
-                    {% endif %}
-                </label>
+        <h2 class="titulo-grupo">DATOS DE PERSONALIZACIÓN</h2>
 
-                {% if campo.name == "duracion" or campo.name == "pasajeros" %}
-                    <div class="control-cantidad">
-                        <button
-                            type="button"
-                            class="boton-cantidad"
-                            data-accion="restar"
-                            data-campo="{{ campo.id_for_label }}"
-                            aria-label="Disminuir {{ campo.label }}"
-                        >−</button>
+        <div class="fila-personalizacion">
+            {% for campo in form %}
+                {% if campo.name == "cliente_referencia" or campo.name == "cambio_solicitado" %}
+                    <div class="grupo-campo">
+                        <label for="{{ campo.id_for_label }}">
+                            {{ campo.label }}
+                            <span class="campo-obligatorio">*</span>
+                        </label>
 
                         {{ campo }}
 
-                        <button
-                            type="button"
-                            class="boton-cantidad"
-                            data-accion="sumar"
-                            data-campo="{{ campo.id_for_label }}"
-                            aria-label="Aumentar {{ campo.label }}"
-                        >+</button>
+                        {% if campo.errors %}
+                            <div class="errores-campo" role="alert">
+                                {{ campo.errors }}
+                            </div>
+                        {% endif %}
                     </div>
-                {% else %}
-                    {{ campo }}
                 {% endif %}
+            {% endfor %}
+        </div>
 
-                {% if campo.errors %}
-                    <div class="errores-campo" role="alert">
-                        {{ campo.errors }}
+        <h2 class="titulo-grupo">DATOS DEL PAQUETE</h2>
+
+        <div class="fila-datos-paquete">
+            {% for campo in form %}
+                {% if campo.name == "nombre" or campo.name == "destino" or campo.name == "duracion" or campo.name == "pasajeros" or campo.name == "costo_objetivo" %}
+                    <div class="grupo-campo">
+                        <label for="{{ campo.id_for_label }}">
+                            {{ campo.label }}
+                            {% if campo.field.required %}
+                                <span class="campo-obligatorio">*</span>
+                            {% else %}
+                                <span class="texto-opcional">— opcional</span>
+                            {% endif %}
+                        </label>
+
+                        {% if campo.name == "duracion" or campo.name == "pasajeros" %}
+                            <div class="control-cantidad">
+                                <button
+                                    type="button"
+                                    class="boton-cantidad"
+                                    data-accion="restar"
+                                    data-campo="{{ campo.id_for_label }}"
+                                    aria-label="Disminuir {{ campo.label }}"
+                                >−</button>
+
+                                {{ campo }}
+
+                                <button
+                                    type="button"
+                                    class="boton-cantidad"
+                                    data-accion="sumar"
+                                    data-campo="{{ campo.id_for_label }}"
+                                    aria-label="Aumentar {{ campo.label }}"
+                                >+</button>
+                            </div>
+                         {% else %}
+                            {{ campo }}
+                        {% endif %}
+
+                        {% if campo.errors %}
+                            <div class="errores-campo" role="alert">
+                                {{ campo.errors }}
+                            </div>
+                        {% endif %}
                     </div>
                 {% endif %}
-            </div>
-        {% endfor %}
+            {% endfor %}
+        </div>
 
         <div class="acciones-formulario">
             <button type="submit" class="boton-principal">

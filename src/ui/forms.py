@@ -90,21 +90,58 @@ class PaqueteForm(forms.Form):
         return nombre
 
 
-class PersonalizarPaqueteForm(PaqueteForm):
-    """Formulario para configurar un paquete personalizado."""
 
-    observaciones = forms.CharField(
-        label="Observaciones",
-        required=False,
-        max_length=1000,
-        widget=forms.Textarea(
+class PersonalizarPaqueteForm(PaqueteForm):
+    """Formulario para personalizar un paquete existente."""
+
+    cliente_referencia = forms.CharField(
+        label="Cliente o referencia",
+        max_length=150,
+        required=True,
+        widget=forms.TextInput(
             attrs={
                 "class": "campo-formulario",
-                "rows": 4,
-                "placeholder": (
-                    "Describe las preferencias, actividades "
-                    "o necesidades del cliente."
-                ),
+                "placeholder": "Cliente o referencia",
             }
         ),
     )
+
+    cambio_solicitado = forms.CharField(
+        label="Cambio solicitado",
+        max_length=500,
+        required=True,
+        widget=forms.TextInput(
+            attrs={
+                "class": "campo-formulario",
+                "placeholder": "Describe el cambio solicitado",
+            }
+        ),
+    )
+
+    nombre = forms.ChoiceField(
+        label="Nombre del paquete",
+        choices=[
+            ("", "Selecciona un paquete guardado"),
+        ],
+        required=True,
+        widget=forms.Select(
+            attrs={"class": "campo-formulario"}
+        ),
+    )
+
+    def __init__(self, *args, paquetes=None, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        opciones = [("", "Selecciona un paquete guardado")]
+
+        if paquetes:
+            opciones.extend(
+                (paquete["nombre"], paquete["nombre"])
+                for paquete in paquetes
+            )
+
+        self.fields["nombre"].choices = opciones
+
+        self.fields["duracion"].initial = 3
+        self.fields["pasajeros"].initial = 2
+
