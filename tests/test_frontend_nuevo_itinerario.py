@@ -36,3 +36,45 @@ def test_formulario_tiene_guardar_y_cancelar():
 
     assert "Guardar" in contenido
     assert "Cancelar" in contenido
+
+
+
+def test_formulario_muestra_paquetes_demostrativos():
+    cliente = Client()
+    respuesta = cliente.get("/itinerarios/nuevo/")
+    contenido = respuesta.content.decode()
+
+    assert "Machu Picchu Clásico" in contenido
+    assert "Valle Sagrado" in contenido
+
+
+def test_paquetes_tienen_destino_y_duracion():
+    cliente = Client()
+    respuesta = cliente.get("/itinerarios/nuevo/")
+    contenido = respuesta.content.decode()
+
+    assert 'data-duracion="5"' in contenido
+    assert 'data-duracion="3"' in contenido
+
+    assert 'data-destino="Cusco · Machu Picchu"' in contenido
+    assert 'data-destino="Cusco · Valle Sagrado"' in contenido
+
+
+def test_destino_y_duracion_son_solo_lectura():
+    cliente = Client()
+    respuesta = cliente.get("/itinerarios/nuevo/")
+    contenido = respuesta.content.decode()
+
+    assert 'id="destino"' in contenido
+    assert 'id="duracion"' in contenido
+    assert contenido.count("readonly") >= 2
+
+
+def test_formulario_prepara_actividades_dinamicas():
+    cliente = Client()
+    respuesta = cliente.get("/itinerarios/nuevo/")
+    contenido = respuesta.content.decode()
+
+    assert 'id="actividades-itinerario"' in contenido
+    assert "itinerarios_formulario.js" in contenido
+
