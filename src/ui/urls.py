@@ -9,6 +9,11 @@ def inicio(request):
     return render(request, "ui/inicio.html")
 
 
+def reservas(request):
+    return render(request, "ui/reservas.html")
+
+
 urlpatterns = [
     path("", inicio, name="inicio"),
+    path("reservas/", reservas, name="reservas"),
 ]
