@@ -14,6 +14,11 @@ def inicio(request):
 def reservas(request):
     return render(request, "ui/reservas.html")
 
+
+def itinerarios(request):
+    return render(request, "ui/itinerarios.html")
+
+
 def nuevo_paquete(request):
     formulario = PaqueteForm(
         request.POST if request.method == "POST" else None
@@ -26,6 +31,7 @@ def nuevo_paquete(request):
             "form": formulario,
         },
     )
+
 
 def personalizar_paquete(request):
     formulario = PersonalizarPaqueteForm(
@@ -48,5 +54,7 @@ urlpatterns = [
         "reservas/personalizar/",
         personalizar_paquete,
         name="personalizar_paquete",
+
     ),
+    path("itinerarios/", itinerarios, name="itinerarios"),
 ]

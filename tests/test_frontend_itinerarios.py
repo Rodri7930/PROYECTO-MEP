@@ -1,24 +1,32 @@
 
-import pytest
-from django.urls import reverse
+import os
+
+import django
+from django.test import Client
+
+os.environ.setdefault(
+    "DJANGO_SETTINGS_MODULE",
+    "src.ui.django_settings",
+)
+django.setup()
 
 
-@pytest.mark.django_db
-def test_pagina_itinerarios_disponible(client):
-    respuesta = client.get("/itinerarios/")
+def test_pagina_itinerarios_disponible():
+    cliente = Client()
+    respuesta = cliente.get("/itinerarios/")
 
     assert respuesta.status_code == 200
 
 
-@pytest.mark.django_db
-def test_pagina_itinerarios_muestra_titulo(client):
-    respuesta = client.get("/itinerarios/")
+def test_pagina_itinerarios_muestra_titulo():
+    cliente = Client()
+    respuesta = cliente.get("/itinerarios/")
 
     assert "Itinerarios" in respuesta.content.decode()
 
 
-@pytest.mark.django_db
-def test_pagina_itinerarios_tiene_accion_nuevo(client):
-    respuesta = client.get("/itinerarios/")
+def test_pagina_itinerarios_tiene_accion_nuevo():
+    cliente = Client()
+    respuesta = cliente.get("/itinerarios/")
 
     assert "Nuevo itinerario" in respuesta.content.decode()
