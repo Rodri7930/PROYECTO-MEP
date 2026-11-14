@@ -1,0 +1,98 @@
+
+{% extends "ui/base.html" %}
+
+{% block titulo %}Personalizar paquete | Magic Experiences Perú{% endblock %}
+
+{% block contenido %}
+<section class="seccion-formulario">
+    <div class="cabecera-formulario">
+        <h1 class="titulo-pagina">Personalizar paquete</h1>
+
+        <p class="descripcion-formulario">
+            Configura una propuesta turística según las preferencias
+            y necesidades del cliente.
+        </p>
+    </div>
+
+    <form method="post" class="formulario-paquete">
+        {% csrf_token %}
+
+        {% if form.non_field_errors %}
+            <div class="errores-campo" role="alert">
+                {{ form.non_field_errors }}
+            </div>
+        {% endif %}
+
+        {% for campo in form %}
+            <div class="grupo-campo">
+                <label for="{{ campo.id_for_label }}">
+                    {{ campo.label }}
+                    {% if campo.field.required %}
+                        <span class="campo-obligatorio">*</span>
+                    {% endif %}
+                </label>
+
+                {% if campo.name == "duracion" or campo.name == "pasajeros" %}
+                    <div class="control-cantidad">
+                        <button
+                            type="button"
+                            class="boton-cantidad"
+                            data-accion="restar"
+                            data-campo="{{ campo.id_for_label }}"
+                            aria-label="Disminuir {{ campo.label }}"
+                        >−</button>
+
+                        {{ campo }}
+
+                        <button
+                            type="button"
+                            class="boton-cantidad"
+                            data-accion="sumar"
+                            data-campo="{{ campo.id_for_label }}"
+                            aria-label="Aumentar {{ campo.label }}"
+                        >+</button>
+                    </div>
+                {% else %}
+                    {{ campo }}
+                {% endif %}
+
+                {% if campo.errors %}
+                    <div class="errores-campo" role="alert">
+                        {{ campo.errors }}
+                    </div>
+                {% endif %}
+            </div>
+        {% endfor %}
+
+        <div class="acciones-formulario">
+            <button type="submit" class="boton-principal">
+                Registrar
+            </button>
+
+            <a href="/reservas/" class="boton-secundario">
+                Cancelar
+            </a>
+        </div>
+    </form>
+</section>
+
+<script>
+document.querySelectorAll(".boton-cantidad").forEach((boton) => {
+    boton.addEventListener("click", () => {
+        const campo = document.getElementById(boton.dataset.campo);
+
+        if (!campo) return;
+
+        const valor = Number(campo.value) || 1;
+
+        if (boton.dataset.accion === "sumar") {
+            campo.value = valor + 1;
+        } else {
+            campo.value = Math.max(1, valor - 1);
+        }
+
+        campo.dispatchEvent(new Event("change", { bubbles: true }));
+    });
+});
+</script>
+{% endblock %}

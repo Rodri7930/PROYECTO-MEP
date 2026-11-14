@@ -88,3 +88,23 @@ class PaqueteForm(forms.Form):
             )
 
         return nombre
+
+
+class PersonalizarPaqueteForm(PaqueteForm):
+    """Formulario para configurar un paquete personalizado."""
+
+    observaciones = forms.CharField(
+        label="Observaciones",
+        required=False,
+        max_length=1000,
+        widget=forms.Textarea(
+            attrs={
+                "class": "campo-formulario",
+                "rows": 4,
+                "placeholder": (
+                    "Describe las preferencias, actividades "
+                    "o necesidades del cliente."
+                ),
+            }
+        ),
+    )
