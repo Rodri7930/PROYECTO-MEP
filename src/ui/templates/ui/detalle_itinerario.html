@@ -1,0 +1,56 @@
+
+{% extends "ui/base.html" %}
+
+{% block titulo %}
+Machu Picchu Clásico | Magic Experiences Perú
+{% endblock %}
+
+{% block contenido %}
+<section class="seccion-itinerarios">
+
+    <h1 class="titulo-pagina">Machu Picchu Clásico</h1>
+
+    <p>
+        <strong>Destino:</strong> Cusco · Machu Picchu
+    </p>
+
+    <p>
+        <strong>Duración:</strong> 5 días
+    </p>
+
+    <h2 class="subtitulo">Actividades por día</h2>
+
+    <article class="tarjeta">
+        <h3>Día 1 - Llegada a Cusco</h3>
+
+        <h4>Actividades</h4>
+
+        <p>
+            09:00 - Recepción de visitantes y traslado al alojamiento.
+        </p>
+
+        <p>
+            14:00 - Recorrido introductorio por la ciudad.
+        </p>
+    </article>
+
+    <article class="tarjeta">
+        <h3>Día 2 - Valle Sagrado</h3>
+
+        <h4>Actividades</h4>
+
+        <p>
+            08:00 - Salida hacia el Valle Sagrado.
+        </p>
+
+        <p>
+            13:00 - Visita a atractivos turísticos de la zona.
+        </p>
+    </article>
+
+    <a href="{% url 'itinerarios' %}" class="boton-principal">
+        Volver a itinerarios
+    </a>
+
+</section>
+{% endblock %}
