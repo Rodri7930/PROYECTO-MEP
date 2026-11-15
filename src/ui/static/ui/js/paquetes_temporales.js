@@ -106,15 +106,42 @@ if (formularioPersonalizar) {
             return;
         }
 
+        // Validar duración, pasajeros y costo objetivo.
+
+        const duracion = Number(campoDuracion.value);
+        const pasajeros = Number(campoPasajeros.value);
+
+        const costoTexto = campoCosto.value.trim();
+        const costo = costoTexto === "" ? null : Number(costoTexto);
+
+        if (!Number.isInteger(duracion) || duracion < 1) {
+            alert("La duración debe ser de al menos 1 día.");
+            campoDuracion.focus();
+            return;
+        }
+
+        if (!Number.isInteger(pasajeros) || pasajeros < 1) {
+            alert("Debe registrarse al menos 1 pasajero.");
+            campoPasajeros.focus();
+            return;
+        }
+
+        if (
+            costo !== null &&
+            (!Number.isFinite(costo) || costo < 0)
+        ) {
+            alert("El costo objetivo no puede ser negativo.");
+            campoCosto.focus();
+            return;
+        }
+
         const nuevoPaquete = {
             id: `demo-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
             nombre: `${paqueteOriginal.nombre} - Personalizado`,
             destino: campoDestino.value,
-            duracion: Number(campoDuracion.value),
-            pasajeros: Number(campoPasajeros.value),
-            costo_objetivo: campoCosto.value
-                ? Number(campoCosto.value)
-                : null,
+            duracion: duracion,
+            pasajeros: pasajeros,
+            costo_objetivo: costo,
             cliente_referencia: cliente,
             cambio_solicitado: cambio,
             paquete_original_id: paqueteOriginal.id,
