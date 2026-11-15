@@ -16,6 +16,21 @@ document.addEventListener("DOMContentLoaded", () => {
         (item) => item.id === idPaquete
     );
 
+    // Activar edición según el tipo de paquete.
+
+    const botonEditar = document.getElementById("editar-desde-resumen");
+
+    if (botonEditar) {
+        const esPersonalizado = paquete.tipo === "Personalizado";
+
+        const ruta = esPersonalizado
+            ? "/reservas/personalizar/"
+            : "/reservas/nuevo/";
+
+        botonEditar.href =
+            `${ruta}?editar=${encodeURIComponent(paquete.id)}`;
+    }
+
     const botonComparar = document.getElementById(
          "comparar-desde-resumen"
     );
