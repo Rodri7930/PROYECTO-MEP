@@ -48,7 +48,8 @@ def test_relacion_1_a_n_proveedor_y_servicios(db_session):
     assert recuperado is not None
     assert len(recuperado.servicios) == 2
     assert {s.categoria for s in recuperado.servicios} == {
-        "Alojamiento", "Alimentación"
+        "Alojamiento",
+        "Alimentación",
     }
     assert all(s.proveedor is recuperado for s in recuperado.servicios)
 
@@ -69,9 +70,7 @@ def test_relacion_servicio_y_tarifas_variables(db_session):
     recuperado = db_session.scalar(select(Servicio))
     assert recuperado is not None
     assert len(recuperado.tarifas) == 2
-    assert {tarifa.temporada for tarifa in recuperado.tarifas} == {
-        "alta", "baja"
-    }
+    assert {tarifa.temporada for tarifa in recuperado.tarifas} == {"alta", "baja"}
     assert {tarifa.personas_min for tarifa in recuperado.tarifas} == {1, 2}
     assert all(tarifa.servicio is recuperado for tarifa in recuperado.tarifas)
 

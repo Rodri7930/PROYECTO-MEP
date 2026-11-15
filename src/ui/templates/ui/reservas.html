@@ -1,0 +1,54 @@
+
+{% extends "ui/base.html" %}
+{% load static %}
+
+{% block titulo %}Reservas | Magic Experiences Perú{% endblock %}
+
+{% block contenido %}
+<section class="seccion-reservas">
+    <div class="cabecera-reservas">
+        <div>
+            <h1 class="titulo-pagina">Reservas</h1>
+            <p class="descripcion-reservas">
+                Gestiona las propuestas y paquetes turísticos en preparación.
+            </p>
+        </div>
+
+        <div class="acciones-reservas">
+            <a href="/reservas/nuevo/" class="boton-principal">
+                Nuevo paquete
+            </a>
+
+            <a href="/reservas/personalizar/" class="boton-principal">
+                Personalizar paquete
+            </a>
+        </div>
+    </div>
+</section>
+
+<section class="seccion-reservas">
+    <h2 class="subtitulo">Paquetes en preparación</h2>
+
+    <div class="contenedor-tabla">
+        <table class="tabla-trabajos" id="tabla-paquetes">
+            <thead>
+                <tr>
+                    <th scope="col">Paquete</th>
+                    <th scope="col">Tipo</th>
+                    <th scope="col">Estado</th>
+                    <th scope="col">Acción</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td colspan="4" class="tabla-vacia">
+                        Todavía no hay paquetes en preparación registrados.
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+<script src="{% static 'ui/js/paquetes_temporales.js' %}" defer></script>
+{% endblock %}

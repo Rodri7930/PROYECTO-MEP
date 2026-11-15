@@ -1,0 +1,54 @@
+
+{% extends "ui/base.html" %}
+{% load static %}
+
+{% block titulo %}Clientes | Magic Experiences Perú{% endblock %}
+
+{% block contenido %}
+<section class="pantalla-clientes">
+    <h1 class="titulo-pagina">Clientes</h1>
+
+    <div class="tarjeta seccion-clientes">
+        <p class="descripcion-clientes">
+            Consulta los clientes registrados mediante la personalización
+            de paquetes turísticos.
+        </p>
+
+        <div class="grupo-campo">
+            <label for="buscar-cliente">Buscar cliente</label>
+            <input
+                type="search"
+                id="buscar-cliente"
+                placeholder="Nombre, teléfono o paquete"
+                autocomplete="off"
+            >
+        </div>
+
+        <p id="contador-clientes" class="contador-clientes">
+            0 cliente(s)
+        </p>
+
+        <div class="contenedor-tabla">
+            <table id="tabla-clientes" class="tabla-trabajos">
+                <thead>
+                    <tr>
+                        <th>CLIENTE</th>
+                        <th>WHATSAPP</th>
+                        <th>PAQUETE</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td colspan="3">
+                            Todavía no hay clientes registrados.
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<script src="{% static 'ui/js/clientes.js' %}" defer></script>
+{% endblock %}

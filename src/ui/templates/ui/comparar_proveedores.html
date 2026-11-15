@@ -1,0 +1,161 @@
+
+{% extends "ui/base.html" %}
+{% load static %}
+
+{% block titulo %}
+Comparar proveedores | Magic Experiences Perú
+{% endblock %}
+
+{% block contenido %}
+
+<section class="seccion-comparacion">
+
+    <!-- ENCABEZADO -->
+    <div class="cabecera-comparacion">
+
+        <p>
+            <a href="#" id="volver-resumen">
+                ← Resumen
+            </a>
+            / Comparación de proveedores
+        </p>
+
+        <h1 class="titulo-pagina">
+            Comparación de proveedores
+        </h1>
+
+        <p class="descripcion-formulario"
+           id="informacion-paquete">
+            Cargando información del paquete...
+        </p>
+
+    </div>
+
+    <!-- FILTROS -->
+    <div class="formulario-paquete">
+
+        <h2 class="subtitulo">Filtros de consulta</h2>
+
+        <form id="form-comparacion">
+
+            <div class="cuadricula-filtros">
+
+                <div class="grupo-campo">
+                    <label for="servicio">Servicio</label>
+
+                    <select id="servicio"
+                            name="servicio"
+                            class="campo-formulario">
+
+                        <option value="Hospedaje">Hospedaje</option>
+                        <option value="Alimentación">Alimentación</option>
+                        <option value="Transporte">Transporte</option>
+                        <option value="Guiado">Guiado</option>
+                        <option value="Tren y entradas">
+                            Tren y entradas
+                        </option>
+
+                    </select>
+                </div>
+
+                <div class="grupo-campo">
+                    <label for="temporada">Temporada</label>
+
+                    <select id="temporada"
+                            name="temporada"
+                            class="campo-formulario">
+
+                        <option value="Alta">Alta</option>
+                        <option value="Media">Media</option>
+                        <option value="Baja">Baja</option>
+
+                    </select>
+                </div>
+
+                <div class="grupo-campo">
+                    <label for="tarifa-maxima">
+                        Tarifa máxima (USD) — opcional
+                    </label>
+
+                    <input type="number"
+                           id="tarifa-maxima"
+                           name="tarifa_maxima"
+                           class="campo-formulario"
+                           min="0"
+                           step="0.01"
+                           placeholder="Sin límite">
+                </div>
+
+                <div class="grupo-campo">
+                    <label for="cantidad-proveedores">
+                        Proveedores a contactar
+                    </label>
+
+                    <select id="cantidad-proveedores"
+                            name="cantidad"
+                            class="campo-formulario">
+
+                        <option value="3">3</option>
+                        <option value="5">5</option>
+
+                    </select>
+                </div>
+
+            </div>
+
+            <button type="submit" class="boton-principal">
+                Consultar tarifas
+            </button>
+
+        </form>
+
+    </div>
+
+    <!-- RESULTADOS -->
+    <div class="tarjeta seccion-resultados"
+         id="resultados-comparacion"
+         hidden>
+
+        <h2 class="subtitulo">
+            Resultados ordenados por tarifa
+        </h2>
+
+        <p id="mensaje-comparacion"></p>
+
+        <div class="contenedor-tabla">
+            <table class="tabla-trabajos">
+
+                <thead>
+                    <tr>
+                        <th>POS.</th>
+                        <th>PROVEEDOR</th>
+                        <th>SERVICIO</th>
+                        <th>TARIFA REFERENCIAL</th>
+                        <th>ACCIÓN</th>
+                    </tr>
+                </thead>
+
+                <tbody id="tabla-resultados">
+                </tbody>
+
+            </table>
+        </div>
+
+        <div class="acciones-formulario">
+            <a href="#"
+               id="ver-resumen-comparacion"
+               class="boton-principal">
+
+                Ver resumen del paquete (0 elegidos)
+
+            </a>
+        </div>
+
+    </div>
+
+</section>
+
+<script src="{% static 'ui/js/comparar_proveedores.js' %}"
+        defer></script>
+
+{% endblock %}
