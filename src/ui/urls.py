@@ -55,6 +55,9 @@ def resumen_paquete(request):
 def comparar_proveedores(request):
     return render(request, "ui/comparar_proveedores.html")
 
+def clientes_view(request):
+    return render(request, "ui/clientes.html")
+
 urlpatterns = [
     path("", inicio, name="inicio"),
     path("reservas/", reservas, name="reservas"),
@@ -69,4 +72,5 @@ urlpatterns = [
     path("itinerarios/nuevo/", nuevo_itinerario, name="nuevo_itinerario"),
     path("reservas/resumen/", resumen_paquete, name="resumen_paquete"),
     path("reservas/comparar/", comparar_proveedores, name="comparar_proveedores"),
+    path("clientes/", clientes_view, name="clientes"),
 ]

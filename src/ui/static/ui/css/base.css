@@ -881,3 +881,63 @@ body {
 .seccion-resultados .fila-detalle-proveedor strong {
     color: #111111;
 }
+
+/* PANTALLA CLIENTES */
+
+.seccion-clientes {
+    padding: 24px;
+}
+
+.descripcion-clientes {
+    color: #333333;
+    margin-bottom: 22px;
+}
+
+.pantalla-clientes .grupo-campo {
+    max-width: 100%;
+    margin-bottom: 16px;
+}
+
+.pantalla-clientes #buscar-cliente {
+    width: 100%;
+    background: #f1f4f2;
+    border: 1px solid #dce4df;
+    border-radius: 8px;
+    padding: 12px 14px;
+    color: #111111;
+    font-size: 14px;
+}
+
+.pantalla-clientes #buscar-cliente:focus {
+    outline: 2px solid #17633c;
+    outline-offset: 1px;
+}
+
+.contador-clientes {
+    color: #333333;
+    font-size: 14px;
+    margin: 12px 0;
+}
+
+.pantalla-clientes .contenedor-tabla {
+    overflow-x: auto;
+}
+
+.pantalla-clientes .tabla-trabajos {
+    width: 100%;
+}
+
+.pantalla-clientes .tabla-trabajos th {
+    color: #65766d;
+    text-align: left;
+}
+
+.pantalla-clientes .tabla-trabajos a {
+    color: #17633c;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.pantalla-clientes .tabla-trabajos a:hover {
+    text-decoration: underline;
+}
