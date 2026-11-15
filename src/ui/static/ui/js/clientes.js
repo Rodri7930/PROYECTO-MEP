@@ -29,11 +29,22 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // Obtener clientes de los paquetes personalizados.
+    const idsRegistrados = new Set();
+
     const clientes = paquetes
-        .filter((paquete) =>
-            paquete.tipo === "Personalizado" &&
-            paquete.cliente_referencia
-        )
+        .filter((paquete) => {
+            if (
+                paquete.tipo !== "Personalizado" ||
+                !paquete.cliente_referencia ||
+                !paquete.id ||
+                idsRegistrados.has(paquete.id)
+            ) {
+                return false;
+            }
+
+            idsRegistrados.add(paquete.id);
+            return true;
+        })
         .map((paquete) => ({
             nombre: paquete.cliente_referencia,
             contacto: paquete.contacto_cliente || "Sin contacto",
