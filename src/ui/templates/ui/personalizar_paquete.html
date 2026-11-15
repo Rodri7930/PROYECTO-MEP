@@ -8,7 +8,7 @@
 <section class="pantalla-personalizar">
     <h1 class="titulo-pagina">Personalizar paquete turístico</h1>
 
-    <form method="post" class="formulario-personalizar">
+    <form method="post" class="formulario-personalizar" id="form-personalizar-paquete">
         {% csrf_token %}
 
         {% if form.non_field_errors %}
@@ -102,4 +102,5 @@
 </section>
 
 <script src="{% static 'ui/js/controles_cantidad.js' %}" defer></script>
+<script src="{% static 'ui/js/paquetes_temporales.js' %}" defer></script>
 {% endblock %}

@@ -14,6 +14,131 @@ document.addEventListener("DOMContentLoaded", () => {
         sessionStorage.setItem(CLAVE, JSON.stringify(paquetes));
     }
 
+
+    // CARGAR PAQUETES EN PERSONALIZAR
+
+    const formularioPersonalizar = document.getElementById(
+        "form-personalizar-paquete"
+    );
+
+
+if (formularioPersonalizar) {
+    const selector = formularioPersonalizar.querySelector('[name="nombre"]');
+
+    const campoCliente = formularioPersonalizar.querySelector(
+        '[name="cliente_referencia"]'
+    );
+    const campoCambio = formularioPersonalizar.querySelector(
+        '[name="cambio_solicitado"]'
+    );
+    const campoDestino = formularioPersonalizar.querySelector(
+        '[name="destino"]'
+    );
+    const campoDuracion = formularioPersonalizar.querySelector(
+        '[name="duracion"]'
+    );
+    const campoPasajeros = formularioPersonalizar.querySelector(
+        '[name="pasajeros"]'
+    );
+    const campoCosto = formularioPersonalizar.querySelector(
+        '[name="costo_objetivo"]'
+    );
+
+    const paquetes = obtenerPaquetes();
+
+    // Mostrar únicamente paquetes originales como punto de partida.
+    if (selector) {
+        selector.replaceChildren();
+
+        const opcionInicial = document.createElement("option");
+        opcionInicial.value = "";
+        opcionInicial.textContent = "Selecciona un paquete guardado";
+        selector.appendChild(opcionInicial);
+
+        paquetes
+            .filter((paquete) => paquete.tipo !== "Personalizado")
+            .forEach((paquete) => {
+                const opcion = document.createElement("option");
+                opcion.value = paquete.id;
+                opcion.textContent = paquete.nombre;
+                selector.appendChild(opcion);
+            });
+
+        // Autocompletar los datos al seleccionar un paquete.
+        selector.addEventListener("change", () => {
+            const paqueteSeleccionado = paquetes.find(
+                (paquete) => paquete.id === selector.value
+            );
+
+            if (!paqueteSeleccionado) {
+                return;
+            }
+
+            campoDestino.value = paqueteSeleccionado.destino || "";
+            campoDuracion.value = paqueteSeleccionado.duracion || 1;
+            campoPasajeros.value = paqueteSeleccionado.pasajeros || 1;
+            campoCosto.value = paqueteSeleccionado.costo_objetivo ?? "";
+        });
+    }
+
+    // Guardar la versión personalizada.
+    formularioPersonalizar.addEventListener("submit", (evento) => {
+        evento.preventDefault();
+
+        if (!formularioPersonalizar.reportValidity()) {
+            return;
+        }
+
+        const paqueteOriginal = paquetes.find(
+            (paquete) => paquete.id === selector.value
+        );
+
+        if (!paqueteOriginal) {
+            alert("Debes seleccionar un paquete registrado.");
+            return;
+        }
+
+        const cliente = campoCliente.value.trim();
+        const cambio = campoCambio.value.trim();
+
+        if (!cliente || !cambio) {
+            alert("Completa el cliente y el cambio solicitado.");
+            return;
+        }
+
+        const nuevoPaquete = {
+            id: `demo-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
+            nombre: `${paqueteOriginal.nombre} - Personalizado`,
+            destino: campoDestino.value,
+            duracion: Number(campoDuracion.value),
+            pasajeros: Number(campoPasajeros.value),
+            costo_objetivo: campoCosto.value
+                ? Number(campoCosto.value)
+                : null,
+            cliente_referencia: cliente,
+            cambio_solicitado: cambio,
+            paquete_original_id: paqueteOriginal.id,
+            tipo: "Personalizado",
+            estado: "En revisión",
+            proveedores: []
+        };
+
+        const paquetesActualizados = obtenerPaquetes();
+        paquetesActualizados.push(nuevoPaquete);
+
+        sessionStorage.setItem(
+            "mep_paquetes_demo",
+            JSON.stringify(paquetesActualizados)
+        );
+
+        alert(
+            `El paquete "${nuevoPaquete.nombre}" se registró correctamente.`
+        );
+
+        window.location.href = "/reservas/";
+    });
+}
+
     // REGISTRAR PAQUETE DEMOSTRATIVO
 
     const formulario = document.getElementById("form-nuevo-paquete");
