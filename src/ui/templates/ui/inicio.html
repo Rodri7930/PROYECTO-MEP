@@ -1,5 +1,6 @@
 
 {% extends "ui/base.html" %}
+{% load static %}
 
 {% block titulo %}Inicio | Magic Experiences Perú{% endblock %}
 
@@ -45,7 +46,7 @@
     <h2 class="subtitulo">Trabajos recientes</h2>
 
     <div class="contenedor-tabla">
-        <table class="tabla-trabajos">
+        <table id="tabla-trabajos-recientes" class="tabla-trabajos">
             <thead>
                 <tr>
                     <th>Paquete</th>
@@ -65,4 +66,5 @@
     </div>
 </section>
 
+<script src="{% static 'ui/js/trabajos_recientes.js' %}" defer></script>
 {% endblock %}
