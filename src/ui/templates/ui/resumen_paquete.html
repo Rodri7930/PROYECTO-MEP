@@ -1,0 +1,88 @@
+
+{% extends "ui/base.html" %}
+{% load static %}
+
+{% block titulo %}Resumen del paquete | Magic Experiences Perú{% endblock %}
+
+{% block contenido %}
+<section class="seccion-resumen-paquete">
+
+    <h1 class="titulo-pagina">Resumen del paquete</h1>
+
+    <div class="tarjeta resumen-datos">
+
+        <div class="cuadricula-resumen">
+            <div>
+                <span>Paquete</span>
+                <strong id="resumen-nombre">—</strong>
+            </div>
+
+            <div>
+                <span>Tipo</span>
+                <strong id="resumen-tipo">—</strong>
+            </div>
+
+            <div>
+                <span>Destino</span>
+                <strong id="resumen-destino">—</strong>
+            </div>
+
+            <div>
+                <span>Duración</span>
+                <strong id="resumen-duracion">—</strong>
+            </div>
+
+            <div>
+                <span>Pasajeros</span>
+                <strong id="resumen-pasajeros">—</strong>
+            </div>
+
+            <div>
+                <span>Costo objetivo</span>
+                <strong id="resumen-costo">—</strong>
+            </div>
+        </div>
+
+        <div class="acciones-formulario">
+            <button
+                type="button"
+                class="boton-principal"
+                id="comparar-desde-resumen"
+                disabled>
+                Comparar proveedores
+            </button>
+
+            <button
+                type="button"
+                class="boton-secundario"
+                disabled
+                title="La edición estará disponible próximamente">
+                Editar
+            </button>
+
+            <a href="{% url 'reservas' %}" class="boton-secundario">
+                Volver a reservas
+            </a>
+        </div>
+
+    </div>
+
+    <div class="tarjeta resumen-proveedores">
+        <h2 class="subtitulo">Proveedores a contactar</h2>
+
+        <p id="mensaje-proveedores">
+            Aún no hay proveedores elegidos. Usa “Comparar proveedores”
+            para encontrar las mejores tarifas.
+        </p>
+
+        <div id="lista-proveedores"></div>
+    </div>
+
+    <p id="error-resumen" class="errores-campo" role="alert" hidden>
+        No se encontró el paquete solicitado.
+    </p>
+
+</section>
+
+<script src="{% static 'ui/js/resumen_paquete.js' %}" defer></script>
+{% endblock %}

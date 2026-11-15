@@ -108,12 +108,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const acciones = document.createElement("td");
 
-            const resumen = document.createElement("button");
-            resumen.type = "button";
+            const resumen = document.createElement("a");
+            resumen.href = `/reservas/resumen/?id=${encodeURIComponent(paquete.id)}`;
             resumen.textContent = "Ver resumen";
-            resumen.className = "boton-tabla";
-            resumen.disabled = true;
-            resumen.title = "Disponible en el siguiente módulo";
+            resumen.className = "boton-secundario boton-tabla";
 
             const comparar = document.createElement("button");
             comparar.type = "button";
