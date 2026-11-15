@@ -1,0 +1,81 @@
+
+{% extends "ui/base.html" %}
+
+{% load static %}
+{% block titulo %}Nuevo paquete | Magic Experiences Perú{% endblock %}
+
+{% block contenido %}
+<section class="seccion-formulario">
+    <div class="cabecera-formulario">
+        <h1 class="titulo-pagina">Nuevo paquete turístico</h1>
+        <p class="descripcion-formulario">
+            Completa los datos iniciales para preparar una nueva
+            propuesta turística.
+        </p>
+    </div>
+
+    <form method="post" class="formulario-paquete" id="form-nuevo-paquete">
+        {% csrf_token %}
+
+        {% if form.non_field_errors %}
+            <div class="errores-campo" role="alert">
+                {{ form.non_field_errors }}
+            </div>
+        {% endif %}
+
+        {% for campo in form %}
+            <div class="grupo-campo">
+                <label for="{{ campo.id_for_label }}">
+                    {{ campo.label }}
+                    {% if campo.field.required %}
+                        <span class="campo-obligatorio">*</span>
+                    {% endif %}
+                </label>
+
+                {% if campo.name == "duracion" or campo.name == "pasajeros" %}
+                    <div class="control-cantidad">
+                        <button
+                            type="button"
+                            class="boton-cantidad"
+                            data-accion="restar"
+                            data-campo="{{ campo.id_for_label }}"
+                            aria-label="Disminuir {{ campo.label }}"
+                        >−</button>
+
+                        {{ campo }}
+
+                        <button
+                            type="button"
+                            class="boton-cantidad"
+                            data-accion="sumar"
+                            data-campo="{{ campo.id_for_label }}"
+                            aria-label="Aumentar {{ campo.label }}"
+                        >+</button>
+                    </div>
+                {% else %}
+                    {{ campo }}
+                {% endif %}
+
+                {% if campo.errors %}
+                    <div class="errores-campo" role="alert">
+                        {{ campo.errors }}
+                    </div>
+                {% endif %}
+            </div>
+        {% endfor %}
+
+        <div class="acciones-formulario">
+            <button type="submit" class="boton-principal">
+                Registrar
+            </button>
+
+            <a href="/reservas/" class="boton-secundario">
+                Cancelar
+            </a>
+        </div>
+    </form>
+</section>
+
+<script src="{% static 'ui/js/controles_cantidad.js' %}" defer></script>
+<script src="{% static 'ui/js/paquetes_temporales.js' %}" defer></script>
+{% endblock %}

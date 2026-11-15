@@ -1,0 +1,118 @@
+
+{% extends "ui/base.html" %}
+{% load static %}
+
+{% block titulo %}
+Nuevo itinerario | Magic Experiences Perú
+{% endblock %}
+
+{% block contenido %}
+
+<section class="seccion-formulario">
+
+    <div class="cabecera-formulario">
+        <h1 class="titulo-pagina">
+            Nuevo itinerario turístico
+        </h1>
+
+        <p class="descripcion-formulario">
+            Selecciona un paquete turístico y completa
+            las actividades correspondientes a cada día.
+        </p>
+    </div>
+
+    <form class="formulario-paquete">
+
+        <h2 class="subtitulo">DATOS DEL PAQUETE</h2>
+
+        <div class="grupo-campo">
+            <label for="paquete">
+                Paquete turístico
+                <span class="campo-obligatorio">*</span>
+            </label>
+
+            <select
+                id="paquete"
+                name="paquete"
+                class="campo-formulario"
+                required>
+                <option
+                    value="machu-picchu-clasico"
+                    data-destino="Cusco · Machu Picchu"
+                    data-duracion="5">
+                    Machu Picchu Clásico
+                </option>
+
+                <option
+                    value="valle-sagrado"
+                    data-destino="Cusco · Valle Sagrado"
+                    data-duracion="3">
+                    Valle Sagrado
+                </option>
+            </select>
+        </div>
+
+<div class="fila-datos-itinerario">
+        <div class="grupo-campo">
+            <label for="destino">Destino principal</label>
+
+            <input
+                type="text"
+                id="destino"
+                class="campo-formulario"
+                placeholder="Se completará automáticamente"
+                readonly>
+        </div>
+
+        <div class="grupo-campo">
+            <label for="duracion">Duración (días)</label>
+
+            <input
+                type="number"
+                id="duracion"
+                class="campo-formulario"
+                placeholder="Se completará automáticamente"
+                readonly>
+        </div>
+</div>
+
+
+        <h2 class="subtitulo">ACTIVIDADES POR DÍA</h2>
+
+        <div id="actividades-itinerario">
+            <p>
+                Selecciona un paquete turístico para visualizar
+                los días correspondientes.
+            </p>
+        </div>
+
+        <div class="acciones-formulario">
+            <button
+                type="button"
+                id="guardar-itinerario"
+                class="boton-principal"
+                disabled>
+                Guardar
+            </button>
+
+            <a
+                href="{% url 'itinerarios' %}"
+                class="boton-secundario">
+                Cancelar
+            </a>
+        </div>
+
+        <p id="mensaje-itinerario"
+            class="descripcion-formulario"
+            role="status"
+            aria-live="polite"
+            hidden>
+        </p>
+
+    </form>
+
+</section>
+
+<script src="{% static 'ui/js/itinerarios_formulario.js' %}" defer></script>
+
+{% endblock %}

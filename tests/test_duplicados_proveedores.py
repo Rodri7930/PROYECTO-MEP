@@ -1,4 +1,3 @@
-
 from src.dominio.duplicados_proveedores import existe_proveedor_duplicado
 
 
@@ -14,9 +13,7 @@ def test_detectar_proveedor_duplicado():
         },
     ]
 
-    resultado = existe_proveedor_duplicado(
-        "PROV001", proveedores
-    )
+    resultado = existe_proveedor_duplicado("PROV001", proveedores)
 
     assert resultado is True
 
@@ -27,9 +24,7 @@ def test_proveedor_no_duplicado():
         {"id_proveedor": "PROV002", "nombre": "Transporte Andino"},
     ]
 
-    resultado = existe_proveedor_duplicado(
-        "PROV003", proveedores
-    )
+    resultado = existe_proveedor_duplicado("PROV003", proveedores)
 
     assert resultado is False
 
@@ -37,9 +32,7 @@ def test_proveedor_no_duplicado():
 def test_lista_proveedores_vacia():
     proveedores = []
 
-    resultado = existe_proveedor_duplicado(
-        "PROV001", proveedores
-    )
+    resultado = existe_proveedor_duplicado("PROV001", proveedores)
 
     assert resultado is False
 
@@ -51,8 +44,6 @@ def test_duplicado_en_segunda_posicion():
         {"id_proveedor": "PROV003", "nombre": "Restaurante Imperial"},
     ]
 
-    resultado = existe_proveedor_duplicado(
-        "PROV002", proveedores
-    )
+    resultado = existe_proveedor_duplicado("PROV002", proveedores)
 
     assert resultado is True
