@@ -1042,7 +1042,19 @@ body {
 
 /* Impresión del reporte */
 
+/* REFACTOR - IMPRESIÓN DE REPORTES */
+
 @media print {
+    @page {
+        size: A4;
+        margin: 15mm;
+    }
+
+    body {
+        background: #ffffff !important;
+        color: #111111 !important;
+    }
+
     body * {
         visibility: hidden;
     }
@@ -1057,15 +1069,57 @@ body {
         top: 0;
         left: 0;
         width: 100%;
+        margin: 0;
+        padding: 0;
     }
 
+    .pantalla-reportes .titulo-pagina {
+        color: #17633c !important;
+        font-size: 22px;
+        margin-bottom: 18px;
+    }
+
+    .pantalla-reportes .seccion-reportes {
+        background: #ffffff !important;
+        border: none;
+        box-shadow: none;
+        padding: 0;
+        margin-bottom: 18px;
+    }
+
+    .pantalla-reportes .seccion-reportes:first-of-type,
     .pantalla-reportes .filtros-reportes,
     .pantalla-reportes .acciones-reportes,
     .pantalla-reportes .enlace-reporte {
-        display: none;
+        display: none !important;
     }
 
     .reporte-paquete {
+        border: 1px solid #cccccc;
+        border-radius: 6px;
+        margin-bottom: 12px;
         break-inside: avoid;
+    }
+
+    .reporte-paquete summary {
+        background: #edf8f0 !important;
+        color: #111111 !important;
+        font-weight: bold;
+    }
+
+    .detalle-reporte {
+        padding: 12px;
+    }
+
+    .detalle-reporte p,
+    .detalle-reporte li {
+        color: #111111 !important;
+        font-size: 12px;
+        line-height: 1.5;
+    }
+
+    .detalle-reporte h3 {
+        color: #17633c !important;
+        font-size: 14px;
     }
 }
