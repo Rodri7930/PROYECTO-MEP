@@ -24,6 +24,25 @@ document.addEventListener("DOMContentLoaded", () => {
         ? obtenerPaquetes().find((paquete) => paquete.id === idEdicion)
         : null;
 
+        // Evitar editar un paquete inexistente.
+    if (idEdicion && !paqueteEdicion) {
+        const formularioActivo = document.querySelector(
+            "#form-nuevo-paquete, #form-personalizar-paquete"
+        );
+
+        if (formularioActivo) {
+            const mensaje = document.createElement("p");
+            mensaje.className = "errores-campo";
+            mensaje.setAttribute("role", "alert");
+            mensaje.textContent =
+                "El paquete que intentas editar no existe o ya no está disponible.";
+
+            formularioActivo.before(mensaje);
+
+            formularioActivo.hidden = true;
+        }
+    }
+
     function cargarDatosEdicion(formulario, paquete) {
         if (!formulario || !paquete) {
             return;
