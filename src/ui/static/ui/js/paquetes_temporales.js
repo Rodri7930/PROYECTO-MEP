@@ -54,6 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
             pasajeros: paquete.pasajeros,
             costo_objetivo: paquete.costo_objetivo,
             cliente_referencia: paquete.cliente_referencia,
+            contacto_cliente: paquete.contacto_cliente,
             cambio_solicitado: paquete.cambio_solicitado
         };
 
@@ -98,6 +99,9 @@ if (formularioPersonalizar) {
 
     const campoCliente = formularioPersonalizar.querySelector(
         '[name="cliente_referencia"]'
+    );
+    const campoContacto = formularioPersonalizar.querySelector(
+        '[name="contacto_cliente"]'
     );
     const campoCambio = formularioPersonalizar.querySelector(
         '[name="cambio_solicitado"]'
@@ -176,9 +180,10 @@ if (formularioPersonalizar) {
 
         const cliente = campoCliente.value.trim();
         const cambio = campoCambio.value.trim();
+        const contacto = campoContacto.value.trim();
 
-        if (!cliente || !cambio) {
-            alert("Completa el cliente y el cambio solicitado.");
+        if (!cliente || !cambio || !contacto) {
+            alert("Completa todos los campos requeridos.");
             return;
         }
 
@@ -257,6 +262,7 @@ if (formularioPersonalizar) {
                 pasajeros,
                 costo_objetivo: costo,
                 cliente_referencia: cliente,
+                contacto_cliente: contacto,
                 cambio_solicitado: cambio,
                 paquete_original_id: paqueteOriginal.id,
                 tipo: "Personalizado",

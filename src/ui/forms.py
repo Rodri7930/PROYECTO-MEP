@@ -129,6 +129,19 @@ class PersonalizarPaqueteForm(PaqueteForm):
         ),
     )
 
+    contacto_cliente = forms.CharField(
+        label="WhatsApp o teléfono",
+        max_length=20,
+        required=True,
+        widget=forms.TextInput(
+            attrs={
+                "placeholder": "Ej. +51 984 112 233",
+                "autocomplete": "tel",
+                "type": "tel",
+            }
+        ),
+    )
+
     def __init__(self, *args, paquetes=None, **kwargs):
         super().__init__(*args, **kwargs)
 

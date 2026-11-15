@@ -21,7 +21,7 @@
 
         <div class="fila-personalizacion">
             {% for campo in form %}
-                {% if campo.name == "cliente_referencia" or campo.name == "cambio_solicitado" %}
+                {% if campo.name == "cliente_referencia" or campo.name == "contacto_cliente" or campo.name == "cambio_solicitado" %}
                     <div class="grupo-campo">
                         <label for="{{ campo.id_for_label }}">
                             {{ campo.label }}
