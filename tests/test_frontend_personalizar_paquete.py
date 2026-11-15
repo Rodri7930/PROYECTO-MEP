@@ -1,4 +1,3 @@
-
 """Pruebas TDD del formulario Personalizar paquete."""
 
 import os
@@ -113,6 +112,7 @@ def test_personalizar_tiene_controles_de_cantidad():
     assert 'data-accion="sumar"' in contenido
     assert 'data-accion="restar"' in contenido
 
+
 def test_personalizar_paquete_muestra_campo_contacto():
     from django.test import Client
 
@@ -123,4 +123,3 @@ def test_personalizar_paquete_muestra_campo_contacto():
     contenido = respuesta.content.decode("utf-8")
 
     assert 'name="contacto_cliente"' in contenido
-    

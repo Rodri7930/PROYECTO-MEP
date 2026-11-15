@@ -1,4 +1,3 @@
-
 """Formularios y validaciones de Magic Experiences Perú."""
 
 import re
@@ -32,9 +31,7 @@ class PaqueteForm(forms.Form):
         label="Destino principal",
         choices=DESTINOS,
         required=True,
-        widget=forms.Select(
-            attrs={"class": "campo-formulario"}
-        ),
+        widget=forms.Select(attrs={"class": "campo-formulario"}),
     )
 
     duracion = forms.IntegerField(
@@ -90,7 +87,6 @@ class PaqueteForm(forms.Form):
         return nombre
 
 
-
 class PersonalizarPaqueteForm(PaqueteForm):
     """Formulario para personalizar un paquete existente."""
 
@@ -124,9 +120,7 @@ class PersonalizarPaqueteForm(PaqueteForm):
             ("", "Selecciona un paquete guardado"),
         ],
         required=True,
-        widget=forms.Select(
-            attrs={"class": "campo-formulario"}
-        ),
+        widget=forms.Select(attrs={"class": "campo-formulario"}),
     )
 
     contacto_cliente = forms.RegexField(
@@ -150,7 +144,6 @@ class PersonalizarPaqueteForm(PaqueteForm):
     )
 
     class PersonalizarPaqueteForm(PaqueteForm):
-
         def clean_contacto_cliente(self):
             contacto = self.cleaned_data["contacto_cliente"]
 
@@ -168,12 +161,10 @@ class PersonalizarPaqueteForm(PaqueteForm):
 
         if paquetes:
             opciones.extend(
-                (paquete["nombre"], paquete["nombre"])
-                for paquete in paquetes
+                (paquete["nombre"], paquete["nombre"]) for paquete in paquetes
             )
 
         self.fields["nombre"].choices = opciones
 
         self.fields["duracion"].initial = 3
         self.fields["pasajeros"].initial = 2
-

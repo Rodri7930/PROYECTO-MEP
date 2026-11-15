@@ -1,16 +1,14 @@
-
 import os
+
+import django
+from django.test import Client
 
 os.environ.setdefault(
     "DJANGO_SETTINGS_MODULE",
     "src.ui.django_settings",
 )
 
-import django
-
 django.setup()
-
-from django.test import Client
 
 
 def test_login_responde_correctamente():

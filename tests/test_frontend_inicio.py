@@ -1,4 +1,3 @@
-
 """Pruebas de la interfaz de Inicio de Magic Experiences Peru."""
 
 import os
@@ -49,6 +48,7 @@ def test_inicio_muestra_boton_nuevo_paquete():
 
     assert "Nuevo paquete" in respuesta.content.decode()
 
+
 def test_inicio_muestra_acceso_personalizar():
     cliente = Client()
 
@@ -78,8 +78,6 @@ def test_inicio_muestra_enlaces_a_paquetes():
 
     assert 'href="/reservas/nuevo/"' in contenido
     assert 'href="/reservas/personalizar/"' in contenido
-
-from django.test import Client
 
 
 def test_inicio_tiene_tabla_de_trabajos_recientes():

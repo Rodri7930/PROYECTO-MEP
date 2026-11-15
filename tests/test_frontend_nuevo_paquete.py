@@ -1,4 +1,3 @@
-
 """Pruebas TDD del formulario Nuevo paquete turístico."""
 
 import os

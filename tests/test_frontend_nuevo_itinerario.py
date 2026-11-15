@@ -1,4 +1,3 @@
-
 import os
 
 import django
@@ -36,7 +35,6 @@ def test_formulario_tiene_guardar_y_cancelar():
 
     assert "Guardar" in contenido
     assert "Cancelar" in contenido
-
 
 
 def test_formulario_muestra_paquetes_demostrativos():
@@ -77,4 +75,3 @@ def test_formulario_prepara_actividades_dinamicas():
 
     assert 'id="actividades-itinerario"' in contenido
     assert "itinerarios_formulario.js" in contenido
-

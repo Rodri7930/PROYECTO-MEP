@@ -1,4 +1,3 @@
-
 """Pruebas TDD de la pantalla principal de Reservas."""
 
 import os
