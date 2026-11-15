@@ -941,3 +941,131 @@ body {
 .pantalla-clientes .tabla-trabajos a:hover {
     text-decoration: underline;
 }
+
+/* PANTALLA REPORTES */
+
+.pantalla-reportes .seccion-reportes {
+    padding: 24px;
+    margin-bottom: 22px;
+}
+
+.filtros-reportes {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.pantalla-reportes select {
+    width: 100%;
+    background: #f1f4f2;
+    border: 1px solid #dce4df;
+    color: #111111;
+    border-radius: 8px;
+    padding: 12px;
+}
+
+.acciones-reportes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+#contador-reportes {
+    color: #333333;
+    font-size: 14px;
+    margin: 12px 0 18px;
+}
+
+.listado-reportes {
+    display: grid;
+    gap: 12px;
+}
+
+.reporte-paquete {
+    border: 1px solid #dce4df;
+    border-radius: 10px;
+    background: #ffffff;
+    overflow: hidden;
+}
+
+.reporte-paquete summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    padding: 16px;
+    cursor: pointer;
+    color: #111111;
+}
+
+.reporte-paquete[open] summary {
+    background: #edf8f0;
+}
+
+.estado-reporte {
+    font-size: 13px;
+    color: #17633c;
+}
+
+.detalle-reporte {
+    padding: 18px;
+    color: #222222;
+}
+
+.detalle-reporte p {
+    margin: 8px 0;
+}
+
+.detalle-reporte h3 {
+    color: #17633c;
+    font-size: 16px;
+    margin: 18px 0 10px;
+}
+
+.detalle-reporte li {
+    margin-bottom: 8px;
+}
+
+.enlace-reporte {
+    display: inline-block;
+    margin-top: 14px;
+    color: #17633c;
+    font-weight: 600;
+}
+
+@media (max-width: 700px) {
+    .filtros-reportes {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Impresión del reporte */
+
+@media print {
+    body * {
+        visibility: hidden;
+    }
+
+    .pantalla-reportes,
+    .pantalla-reportes * {
+        visibility: visible;
+    }
+
+    .pantalla-reportes {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+    }
+
+    .pantalla-reportes .filtros-reportes,
+    .pantalla-reportes .acciones-reportes,
+    .pantalla-reportes .enlace-reporte {
+        display: none;
+    }
+
+    .reporte-paquete {
+        break-inside: avoid;
+    }
+}

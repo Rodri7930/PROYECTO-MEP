@@ -1,0 +1,67 @@
+
+{% extends "ui/base.html" %}
+{% load static %}
+
+{% block titulo %}Reportes | Magic Experiences Perú{% endblock %}
+
+{% block contenido %}
+<section class="pantalla-reportes">
+    <h1 class="titulo-pagina">Reportes</h1>
+
+    <div class="tarjeta seccion-reportes">
+        <h2 class="titulo-grupo">FILTROS DE REPORTE</h2>
+
+        <div class="filtros-reportes">
+            <div class="grupo-campo">
+                <label for="filtro-estado">Estado</label>
+                <select id="filtro-estado">
+                    <option value="">Todos los estados</option>
+                    <option value="En preparación">En preparación</option>
+                    <option value="En revisión">En revisión</option>
+                </select>
+            </div>
+
+            <div class="grupo-campo">
+                <label for="filtro-tipo">Tipo de paquete</label>
+                <select id="filtro-tipo">
+                    <option value="">Todos los tipos</option>
+                    <option value="Nuevo">Nuevo</option>
+                    <option value="Personalizado">Personalizado</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="acciones-reportes">
+            <button
+                type="button"
+                id="exportar-csv"
+                class="boton-principal"
+            >
+                Exportar CSV
+            </button>
+
+            <button
+                type="button"
+                id="exportar-pdf"
+                class="boton-principal"
+            >
+                Exportar PDF
+            </button>
+        </div>
+    </div>
+
+    <div class="tarjeta seccion-reportes">
+        <h2 class="titulo-grupo">LISTADO DE PAQUETES</h2>
+
+        <p id="contador-reportes" aria-live="polite">
+            0 paquetes encontrados
+        </p>
+
+        <div id="listado-reportes" class="listado-reportes">
+            <p>Todavía no hay paquetes registrados.</p>
+        </div>
+    </div>
+</section>
+
+<script src="{% static 'ui/js/reportes.js' %}" defer></script>
+{% endblock %}
