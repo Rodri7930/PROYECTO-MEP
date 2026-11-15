@@ -112,3 +112,15 @@ def test_personalizar_tiene_controles_de_cantidad():
 
     assert 'data-accion="sumar"' in contenido
     assert 'data-accion="restar"' in contenido
+
+def test_personalizar_paquete_muestra_campo_contacto():
+    from django.test import Client
+
+    respuesta = Client().get("/reservas/personalizar/")
+
+    assert respuesta.status_code == 200
+
+    contenido = respuesta.content.decode("utf-8")
+
+    assert 'name="contacto_cliente"' in contenido
+    
