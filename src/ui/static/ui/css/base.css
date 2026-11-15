@@ -1123,3 +1123,139 @@ body {
         font-size: 14px;
     }
 }
+
+/* Fondo de Machu Picchu */
+
+.fondo-machu-picchu {
+    background-image:
+        linear-gradient(
+            rgba(255, 255, 255, 0.48),
+            rgba(255, 255, 255, 0.48)
+        ),
+        url("../img/fondo.jpg");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    min-height: 100vh;
+}
+
+/* Logotipo del menú lateral */
+
+/* LOGOTIPO EN MENÚ LATERAL */
+
+.menu-lateral .marca {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 35px 15px;
+}
+
+.menu-lateral .enlace-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.menu-lateral .logo-menu {
+    display: block;
+    width: 200px;
+    height: auto;
+    object-fit: contain;
+}
+
+
+/* ENCABEZADO FLOTANTE */
+
+.encabezado {
+    position: absolute;
+    top: 15px;
+    right: 25px;
+    z-index: 10;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 12px;
+
+    width: auto;
+    height: auto;
+    min-height: 0;
+    padding: 0;
+
+    background: transparent;
+    border: none;
+    box-shadow: none;
+}
+
+.area-principal {
+    position: relative;
+}
+
+.usuario-superior {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 6px 14px 6px 6px;
+    background: #ffffff;
+    border: 1px solid #e0e6e2;
+    border-radius: 30px;
+}
+
+.usuario-avatar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+
+    background: #17633c;
+    color: #ffffff;
+    font-size: 17px;
+    font-weight: bold;
+}
+
+.usuario-informacion {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.usuario-informacion strong {
+    color: #111111;
+    font-size: 13px;
+}
+
+.usuario-informacion small {
+    color: #65766d;
+    font-size: 11px;
+}
+
+.boton-salir {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 38px;
+    padding: 0 19px;
+
+    background: #ffffff;
+    border: 1px solid #e0e6e2;
+    border-radius: 9px;
+
+    color: #111111;
+    text-decoration: none;
+    font-size: 13px;
+}
+
+.boton-salir:hover {
+    background: #f1f4f2;
+}
+
+.contenido {
+    padding-top: 85px;
+}

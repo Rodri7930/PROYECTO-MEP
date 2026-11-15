@@ -5,7 +5,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const contrasena = document.getElementById("contrasena-login");
     const mensaje = document.getElementById("mensaje-login");
 
-    if (!formulario || !usuario || !contrasena || !mensaje) {
+    // Si ya existe una sesión demostrativa, regresar a Inicio.
+    if (sessionStorage.getItem("mep_sesion_demo")) {
+        window.location.replace("/inicio/");
         return;
     }
 
@@ -37,6 +39,6 @@ document.addEventListener("DOMContentLoaded", () => {
         // Sesión demostrativa, sin guardar contraseñas.
         sessionStorage.setItem("mep_sesion_demo", correo);
 
-        window.location.href = "/";
+        window.location.replace("/inicio/");
     });
 });

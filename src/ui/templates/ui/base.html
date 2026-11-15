@@ -12,7 +12,7 @@
     <div class="aplicacion">
         <aside class="menu-lateral">
             <div class="marca">
-                <a href="/" class="enlace-logo" aria-label="Ir al inicio">
+                <a href="/inicio/" class="enlace-logo" aria-label="Ir al inicio">
                     <img
                         src="{% static 'ui/img/logo-montana.png' %}"
                         alt="Magic Experiences Perú"
@@ -22,8 +22,8 @@
             </div>
 
             <nav class="navegacion" aria-label="Menú principal">
-                <a href="/"
-                class="enlace-menu {% if request.path == '/' %}activo{% endif %}">
+                <a href="/inicio/"
+                class="enlace-menu {% if request.path == '/inicio/' %}activo{% endif %}">
                     Inicio
                 </a>
 
@@ -66,11 +66,12 @@
                 </a>
             </header>
 
-            <main class="contenido{% if request.path == '/' or request.path == '/clientes/' or request.path == '/reportes/' %} fondo-machu-picchu{% endif %}">
+            <main class="contenido{% if request.path == '/inicio/' or request.path == '/clientes/' or request.path == '/reportes/' %} fondo-machu-picchu{% endif %}">
                 {% block contenido %}
                 {% endblock %}
             </main>
         </div>
     </div>
+    <script src="{% static 'ui/js/sesion_demo.js' %}" defer></script>
 </body>
 </html>

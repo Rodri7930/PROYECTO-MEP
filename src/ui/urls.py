@@ -1,11 +1,14 @@
 
 """Rutas web de Magic Experiences Perú."""
 
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.urls import path
 
 from src.ui.forms import PaqueteForm, PersonalizarPaqueteForm
 
+
+def entrada(request):
+    return redirect("/login/")
 
 def inicio(request):
     return render(request, "ui/inicio.html")
@@ -65,7 +68,8 @@ def login_view(request):
     return render(request, "ui/login.html")
 
 urlpatterns = [
-    path("", inicio, name="inicio"),
+    path("", entrada, name="entrada"),
+    path("inicio/", inicio, name="inicio"),
     path("reservas/", reservas, name="reservas"),
     path("reservas/nuevo/", nuevo_paquete, name="nuevo_paquete"),
     path(
