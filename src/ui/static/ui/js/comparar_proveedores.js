@@ -366,19 +366,6 @@ document.addEventListener("DOMContentLoaded", () => {
             `${elegibles.length} cumplen el rango. ` +
             `Se muestran los ${recomendados.length} más económicos.`;
 
-        if (recomendados.length === 0) {
-            const fila = document.createElement("tr");
-            const celda = document.createElement("td");
-
-            celda.colSpan = 5;
-            celda.className = "tabla-vacia";
-            celda.textContent =
-                "No se encontraron proveedores para estos filtros.";
-
-            fila.appendChild(celda);
-            tabla.appendChild(fila);
-        }
-
         resultados.hidden = false;
     });
 });

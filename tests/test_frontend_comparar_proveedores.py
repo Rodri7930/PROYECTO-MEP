@@ -62,7 +62,7 @@ def test_comparador_tiene_acciones():
     contenido = respuesta.content.decode()
 
     assert "Consultar tarifas" in contenido
-    assert "Volver al resumen" in contenido
+    assert "Ver resumen del paquete" in contenido
 
 
 def test_comparador_prepara_resultados():
