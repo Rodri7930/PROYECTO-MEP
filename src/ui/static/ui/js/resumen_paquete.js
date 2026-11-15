@@ -16,6 +16,13 @@ document.addEventListener("DOMContentLoaded", () => {
         (item) => item.id === idPaquete
     );
 
+    const botonComparar = document.getElementById(
+         "comparar-desde-resumen"
+    );
+
+    botonComparar.href =
+        `/reservas/comparar/?id=${encodeURIComponent(paquete.id)}`;
+
     if (!paquete) {
         document.querySelector(".resumen-datos").hidden = true;
         document.querySelector(".resumen-proveedores").hidden = true;

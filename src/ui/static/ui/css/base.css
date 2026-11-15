@@ -301,6 +301,18 @@ body {
     }
 }
 
+.tabla-trabajos .boton-tabla {
+    display: inline-block;
+    padding: 9px 12px;
+    border-radius: 7px;
+    text-decoration: none;
+    font-size: 13px;
+    white-space: nowrap;
+}
+
+.tabla-trabajos td:last-child {
+    white-space: nowrap;
+}
 
 /*FORMULARIO NUEVO PAQUETE*/
 
@@ -664,7 +676,6 @@ body {
     }
 }
 
-
 /* RESUMEN DEL PAQUETE*/
 
 .seccion-resumen-paquete {
@@ -730,4 +741,71 @@ body {
     .cuadricula-resumen {
         grid-template-columns: 1fr;
     }
+}
+
+/* COMPARACIÓN DE PROVEEDORES */
+
+.seccion-comparacion {
+    width: 100%;
+}
+
+.cabecera-comparacion {
+    margin-bottom: 24px;
+}
+
+.cabecera-comparacion a {
+    color: var(--verde-titulo);
+    text-decoration: none;
+}
+
+.seccion-comparacion .formulario-paquete {
+    margin-bottom: 20px;
+}
+
+.cuadricula-filtros {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.seccion-resultados {
+    margin-top: 20px;
+}
+
+.seccion-resultados .contenedor-tabla {
+    box-shadow: none;
+}
+
+@media (max-width: 1100px) {
+    .cuadricula-filtros {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 600px) {
+    .cuadricula-filtros {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Detalle expandido de proveedor seleccionado */
+
+.fila-detalle-proveedor td {
+    background: #fff7ed;
+    padding: 18px 20px;
+}
+
+.fila-detalle-proveedor strong {
+    color: #111111;
+}
+
+.fila-detalle-proveedor p {
+    margin: 10px 0;
+    color: #222222;
+    line-height: 1.6;
+}
+
+.fila-detalle-proveedor .boton-secundario {
+    padding: 8px 14px;
+    cursor: pointer;
 }

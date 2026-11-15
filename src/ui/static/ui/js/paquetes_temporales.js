@@ -113,12 +113,13 @@ document.addEventListener("DOMContentLoaded", () => {
             resumen.textContent = "Ver resumen";
             resumen.className = "boton-secundario boton-tabla";
 
-            const comparar = document.createElement("button");
-            comparar.type = "button";
+            const comparar = document.createElement("a");
+
+            comparar.href =
+                `/reservas/comparar/?id=${encodeURIComponent(paquete.id)}`;
+
             comparar.textContent = "Comparar";
             comparar.className = "boton-principal boton-tabla";
-            comparar.disabled = true;
-            comparar.title = "Disponible en el siguiente módulo";
 
             acciones.append(resumen, " ", comparar);
 
