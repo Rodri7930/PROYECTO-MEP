@@ -129,18 +129,37 @@ class PersonalizarPaqueteForm(PaqueteForm):
         ),
     )
 
-    contacto_cliente = forms.CharField(
+    contacto_cliente = forms.RegexField(
         label="WhatsApp o teléfono",
+        regex=r"^\+?[\d\s()-]{9,20}$",
         max_length=20,
         required=True,
+        error_messages={
+            "invalid": "Ingresa un número de contacto válido.",
+            "required": "El contacto del cliente es obligatorio.",
+        },
         widget=forms.TextInput(
             attrs={
                 "placeholder": "Ej. +51 984 112 233",
                 "autocomplete": "tel",
-                "type": "tel",
+                "inputmode": "tel",
+                "minlength": "9",
+                "maxlength": "20",
             }
         ),
     )
+
+    class PersonalizarPaqueteForm(PaqueteForm):
+
+        def clean_contacto_cliente(self):
+            contacto = self.cleaned_data["contacto_cliente"]
+
+            if sum(caracter.isdigit() for caracter in contacto) < 9:
+                raise forms.ValidationError(
+                    "El contacto debe contener al menos 9 dígitos."
+                )
+
+            return contacto
 
     def __init__(self, *args, paquetes=None, **kwargs):
         super().__init__(*args, **kwargs)

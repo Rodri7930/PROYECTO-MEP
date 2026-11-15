@@ -187,6 +187,16 @@ if (formularioPersonalizar) {
             return;
         }
 
+        // Validar el formato del contacto.
+        const contactoValido = /^\+?[\d\s()-]{9,20}$/.test(contacto);
+        const cantidadDigitos = contacto.replace(/\D/g, "").length;
+
+        if (!contactoValido || cantidadDigitos < 9) {
+            alert("Ingresa un WhatsApp o teléfono válido de al menos 9 dígitos.");
+            campoContacto.focus();
+            return;
+        }
+
         // Validar duración, pasajeros y costo objetivo.
 
         const duracion = Number(campoDuracion.value);
@@ -237,6 +247,7 @@ if (formularioPersonalizar) {
                 pasajeros,
                 costo_objetivo: costo,
                 cliente_referencia: cliente,
+                contacto_cliente: contacto,
                 cambio_solicitado: cambio,
                 paquete_original_id: paqueteOriginal.id
             };
