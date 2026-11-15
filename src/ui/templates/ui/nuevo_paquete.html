@@ -14,7 +14,7 @@
         </p>
     </div>
 
-    <form method="post" class="formulario-paquete">
+    <form method="post" class="formulario-paquete" id="form-nuevo-paquete">
         {% csrf_token %}
 
         {% if form.non_field_errors %}
@@ -77,4 +77,5 @@
 </section>
 
 <script src="{% static 'ui/js/controles_cantidad.js' %}" defer></script>
+<script src="{% static 'ui/js/paquetes_temporales.js' %}" defer></script>
 {% endblock %}

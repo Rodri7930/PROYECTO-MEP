@@ -1,5 +1,6 @@
 
 {% extends "ui/base.html" %}
+{% load static %}
 
 {% block titulo %}Reservas | Magic Experiences Perú{% endblock %}
 
@@ -29,7 +30,7 @@
     <h2 class="subtitulo">Paquetes en preparación</h2>
 
     <div class="contenedor-tabla">
-        <table class="tabla-trabajos">
+        <table class="tabla-trabajos" id="tabla-paquetes">
             <thead>
                 <tr>
                     <th scope="col">Paquete</th>
@@ -49,4 +50,5 @@
         </table>
     </div>
 </section>
+<script src="{% static 'ui/js/paquetes_temporales.js' %}" defer></script>
 {% endblock %}
