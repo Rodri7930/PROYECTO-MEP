@@ -49,3 +49,27 @@ def test_reservas_muestra_enlaces_de_acciones():
 
     assert 'href="/reservas/nuevo/"' in contenido
     assert 'href="/reservas/personalizar/"' in contenido
+
+
+def test_reservas_tiene_tabla_dinamica():
+    cliente = Client()
+    respuesta = cliente.get("/reservas/")
+    contenido = respuesta.content.decode()
+
+    assert 'id="tabla-paquetes"' in contenido
+
+
+def test_reservas_prepara_estado_vacio():
+    cliente = Client()
+    respuesta = cliente.get("/reservas/")
+    contenido = respuesta.content.decode()
+
+    assert "Todavía no hay paquetes en preparación registrados." in contenido
+
+
+def test_reservas_carga_script_de_paquetes():
+    cliente = Client()
+    respuesta = cliente.get("/reservas/")
+    contenido = respuesta.content.decode()
+
+    assert "paquetes_temporales.js" in contenido
