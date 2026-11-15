@@ -26,13 +26,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const paquete = paquetes.find((item) => item.id === idPaquete);
 
     if (!paquete) {
-        informacion.textContent =
-            "No se encontró el paquete seleccionado.";
+        informacion.textContent = "No se encontró el paquete seleccionado.";
         formulario.hidden = true;
         return;
     }
 
-    // Proveedores seleccionados para este paquete.
     if (!Array.isArray(paquete.proveedores)) {
         paquete.proveedores = [];
     }
@@ -46,14 +44,11 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function actualizarContador() {
-        const cantidad = paquete.proveedores.length;
-
         verResumen.textContent =
-            `Ver resumen del paquete (${cantidad} elegidos)`;
+            `Ver resumen del paquete (${paquete.proveedores.length} elegidos)`;
     }
 
     actualizarContador();
-
 
     const urlResumen =
         `/reservas/resumen/?id=${encodeURIComponent(paquete.id)}`;
@@ -62,7 +57,6 @@ document.addEventListener("DOMContentLoaded", () => {
     verResumen.href = urlResumen;
 
     const costo = paquete.costo_objetivo;
-
     const textoCosto =
         costo === null || costo === undefined
             ? "Sin costo objetivo"
@@ -74,116 +68,6 @@ document.addEventListener("DOMContentLoaded", () => {
         `${paquete.duracion} días · ` +
         `Costo objetivo ${textoCosto}`;
 
-    // CATÁLOGO DEMOSTRATIVO
-
-    const servicios = {
-        "Hospedaje": {
-            nombres: [
-                "Hotel Inti",
-                "Hotel Andino",
-                "Hotel Imperial II",
-                "Hotel Cusco",
-                "Hotel Sol",
-            ],
-            detalle: "Habitación doble",
-            base: 75,
-            unidad: "habitación/noche",
-        },
-        "Alimentación": {
-            nombres: [
-                "Restaurante Inti",
-                "Restaurante Andino",
-                "Restaurante Imperial",
-                "Restaurante Cusco",
-                "Restaurante Sol",
-            ],
-            detalle: "Menú turístico",
-            base: 18,
-            unidad: "persona",
-        },
-        "Transporte": {
-            nombres: [
-                "Transportes Inti",
-                "Transportes Andinos",
-                "Transporte Imperial",
-                "Transporte Cusco",
-                "Transporte Sol",
-            ],
-            detalle: "Servicio de transporte turístico",
-            base: 55,
-            unidad: "servicio",
-        },
-        "Guiado": {
-            nombres: [
-                "Guías Inti",
-                "Guías Andinos",
-                "Guías Imperial",
-                "Guías Cusco",
-                "Guías Sol",
-            ],
-            detalle: "Servicio de guiado turístico",
-            base: 40,
-            unidad: "servicio",
-        },
-        "Tren y entradas": {
-            nombres: [
-                "Operador Inti",
-                "Operador Andino",
-                "Operador Imperial",
-                "Operador Cusco",
-                "Operador Sol",
-            ],
-            detalle: "Tren y entradas turísticas",
-            base: 110,
-            unidad: "persona",
-        },
-    };
-
-    const factoresTemporada = {
-        Alta: 1.25,
-        Media: 1,
-        Baja: 0.85,
-    };
-
-    function obtenerProveedores(servicio, temporada) {
-        const configuracion = servicios[servicio];
-        const factor = factoresTemporada[temporada];
-
-        if (!configuracion || !factor) {
-            return [];
-        }
-
-        return Array.from({ length: 20 }, (_, indice) => {
-            const numero = indice + 1;
-
-            const nombreBase =
-                configuracion.nombres[indice % 5];
-
-            const nombre =
-                indice < 5
-                    ? nombreBase
-                    : `${nombreBase} ${Math.floor(indice / 5) + 1}`;
-
-            const tarifaBase =
-                configuracion.base + indice * 3.5;
-
-            const tarifa = Number(
-                (tarifaBase * factor).toFixed(2)
-            );
-
-            return {
-                id: `${servicio}-${numero}`,
-                nombre,
-                servicio,
-                detalle: configuracion.detalle,
-                tarifa,
-                unidad: configuracion.unidad,
-            };
-        });
-    }
-
-
-
     function crearBoton(texto, accion) {
         const boton = document.createElement("button");
         boton.type = "button";
@@ -193,7 +77,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return boton;
     }
 
-    function mostrarProveedores(proveedores, catalogo, limite) {
+    function mostrarProveedores(proveedores, limite) {
         tabla.replaceChildren();
 
         if (proveedores.length === 0) {
@@ -203,21 +87,16 @@ document.addEventListener("DOMContentLoaded", () => {
             celda.colSpan = 5;
             celda.className = "tabla-vacia";
             celda.textContent =
-                "No se encontraron proveedores para estos filtros.";
+                "No se encontraron tarifas registradas para estos filtros.";
 
             fila.appendChild(celda);
             tabla.appendChild(fila);
             return;
         }
 
-        const promedio = catalogo.reduce(
-            (total, item) => total + item.tarifa,
-            0
-        ) / catalogo.length;
-
         proveedores.forEach((proveedor, indice) => {
             const seleccionado = paquete.proveedores.some(
-                (item) => item.id === proveedor.id
+                (item) => Number(item.id) === Number(proveedor.id)
             );
 
             const fila = document.createElement("tr");
@@ -226,7 +105,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 indice + 1,
                 proveedor.nombre,
                 proveedor.detalle,
-                `USD ${proveedor.tarifa.toFixed(2)} · ${proveedor.unidad}`
+                `${proveedor.moneda} ${proveedor.tarifa.toFixed(2)}`
             ];
 
             valores.forEach((valor) => {
@@ -241,28 +120,27 @@ document.addEventListener("DOMContentLoaded", () => {
                 seleccionado ? "Seleccionado ✓" : "Seleccionar",
                 () => {
                     const yaSeleccionado = paquete.proveedores.some(
-                        (item) => item.id === proveedor.id
+                        (item) => Number(item.id) === Number(proveedor.id)
                     );
 
-                    if (!yaSeleccionado) {
-                        const cantidadServicio =
-                            paquete.proveedores.filter(
-                                (item) => item.servicio === proveedor.servicio
-                            ).length;
-
-                        if (cantidadServicio >= limite) {
-                            alert(
-                                `Puedes seleccionar hasta ${limite} proveedores de este servicio.`
-                            );
-                            return;
-                        }
-
-                        paquete.proveedores.push({
-                            ...proveedor
-                        });
-                        guardarSeleccion();
-                        mostrarProveedores(proveedores, catalogo, limite);
+                    if (yaSeleccionado) {
+                        return;
                     }
+
+                    const cantidadServicio = paquete.proveedores.filter(
+                        (item) => item.servicio === proveedor.servicio
+                    ).length;
+
+                    if (cantidadServicio >= limite) {
+                        alert(
+                            `Puedes seleccionar hasta ${limite} proveedores de este servicio.`
+                        );
+                        return;
+                    }
+
+                    paquete.proveedores.push({ ...proveedor });
+                    guardarSeleccion();
+                    mostrarProveedores(proveedores, limite);
                 }
             );
 
@@ -280,26 +158,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 const titulo = document.createElement("strong");
                 titulo.textContent =
-                    `${proveedor.nombre} · ${proveedor.servicio} · ${proveedor.detalle}`;
+                    `${proveedor.nombre} · ${proveedor.servicio}`;
 
                 const informacionDetalle = document.createElement("p");
-                const ahorro = Math.max(
-                    0,
-                    promedio - proveedor.tarifa
-                );
-
                 informacionDetalle.textContent =
-                    `Tarifa: USD ${proveedor.tarifa.toFixed(2)} ` +
-                    `${proveedor.unidad} · ` +
-                    `Ahorro estimado frente al promedio: USD ${ahorro.toFixed(2)}`;
+                    `Tarifa referencial: ${proveedor.moneda} ` +
+                    `${proveedor.tarifa.toFixed(2)}`;
 
                 const quitar = crearBoton("Quitar", () => {
                     paquete.proveedores = paquete.proveedores.filter(
-                        (item) => item.id !== proveedor.id
+                        (item) => Number(item.id) !== Number(proveedor.id)
                     );
 
                     guardarSeleccion();
-                    mostrarProveedores(proveedores, catalogo, limite);
+                    mostrarProveedores(proveedores, limite);
                 });
 
                 detalleCelda.append(
@@ -314,9 +186,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // CONSULTAR TARIFAS
-
-    formulario.addEventListener("submit", (evento) => {
+    formulario.addEventListener("submit", async (evento) => {
         evento.preventDefault();
 
         if (!formulario.reportValidity()) {
@@ -345,27 +215,55 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
-        const todos = obtenerProveedores(servicio, temporada);
+        const parametros = new URLSearchParams({
+            servicio,
+            temporada,
+            pasajeros: String(paquete.pasajeros),
+            cantidad: String(cantidad),
+            fecha: new Date().toISOString().slice(0, 10)
+        });
 
-        const elegibles = todos
-            .filter((proveedor) =>
-                tarifaMaxima === null ||
-                proveedor.tarifa <= tarifaMaxima
-            )
-            .sort((a, b) => a.tarifa - b.tarifa);
+        if (tarifaMaxima !== null) {
+            parametros.set("tarifa_maxima", String(tarifaMaxima));
+        }
 
-        const recomendados = elegibles.slice(0, cantidad);
+        const botonConsultar = formulario.querySelector(
+            'button[type="submit"]'
+        );
 
-        mostrarProveedores(recomendados, elegibles, cantidad);
-
-        const temporadaTexto = temporada.toLowerCase();
-
-        mensaje.textContent =
-            `Se compararon ${todos.length} proveedores de ` +
-            `${servicio} (temporada ${temporadaTexto}); ` +
-            `${elegibles.length} cumplen el rango. ` +
-            `Se muestran los ${recomendados.length} más económicos.`;
-
+        botonConsultar.disabled = true;
+        botonConsultar.textContent = "Consultando...";
         resultados.hidden = false;
+        mensaje.textContent = "Consultando tarifas registradas...";
+
+        try {
+            const respuesta = await fetch(
+                `/api/comparar-tarifas/?${parametros.toString()}`
+            );
+
+            const datos = await respuesta.json();
+
+            if (!respuesta.ok) {
+                throw new Error(datos.error || "No se pudo consultar.");
+            }
+
+            const proveedores = datos.resultados.map((item) => ({
+                ...item,
+                tarifa: Number(item.tarifa)
+            }));
+
+            mostrarProveedores(proveedores, cantidad);
+
+            mensaje.textContent = proveedores.length
+                ? `Se encontraron ${proveedores.length} tarifas reales para ${servicio}, temporada ${temporada}.`
+                : `No existen tarifas registradas para ${servicio}, temporada ${temporada}, con estos filtros.`;
+
+        } catch (error) {
+            tabla.replaceChildren();
+            mensaje.textContent = error.message;
+        } finally {
+            botonConsultar.disabled = false;
+            botonConsultar.textContent = "Consultar tarifas";
+        }
     });
 });
