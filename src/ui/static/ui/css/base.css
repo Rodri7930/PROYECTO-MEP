@@ -809,3 +809,75 @@ body {
     padding: 8px 14px;
     cursor: pointer;
 }
+
+/* Proveedores seleccionados en el resumen */
+
+.proveedor-resumen {
+    background: #f1f4f2;
+    border: 1px solid #dce4df;
+    border-radius: 9px;
+    padding: 15px;
+    margin-bottom: 12px;
+}
+
+.proveedor-resumen strong {
+    display: inline-block;
+    color: #111111;
+    margin-right: 12px;
+}
+
+.proveedor-resumen span {
+    color: var(--verde-titulo);
+    font-size: 13px;
+}
+
+.proveedor-resumen p {
+    color: #333333;
+    font-size: 14px;
+    margin: 8px 0 0;
+}
+
+/* REFACTOR - TABLA DE COMPARACIÓN */
+
+.seccion-resultados .tabla-trabajos thead {
+    background: #ffffff;
+}
+
+.seccion-resultados .tabla-trabajos th {
+    color: #65766d;
+    font-size: 13px;
+}
+
+.seccion-resultados .tabla-trabajos tbody tr:not(.fila-detalle-proveedor) {
+    background: #edf8f0;
+}
+
+.seccion-resultados .tabla-trabajos td {
+    padding: 15px 12px;
+    font-size: 14px;
+}
+
+.seccion-resultados .tabla-trabajos td .boton-secundario {
+    display: inline-block;
+    background: #ffffff;
+    color: #111111;
+    border: 1px solid #dce4df;
+    border-radius: 10px;
+    padding: 8px 12px;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.seccion-resultados .tabla-trabajos td .boton-secundario:disabled {
+    opacity: 1;
+    cursor: default;
+}
+
+.seccion-resultados .fila-detalle-proveedor td {
+    background: #fff7ed;
+    padding: 16px 20px;
+}
+
+.seccion-resultados .fila-detalle-proveedor strong {
+    color: #111111;
+}

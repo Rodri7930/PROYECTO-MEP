@@ -56,9 +56,22 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("mensaje-proveedores").hidden = true;
 
         proveedores.forEach((proveedor) => {
-            const elemento = document.createElement("p");
-            elemento.textContent = proveedor.nombre;
-            lista.appendChild(elemento);
+            const tarjeta = document.createElement("div");
+            tarjeta.className = "proveedor-resumen";
+
+            const nombre = document.createElement("strong");
+            nombre.textContent = proveedor.nombre;
+
+            const servicio = document.createElement("span");
+            servicio.textContent = proveedor.servicio;
+
+            const tarifa = document.createElement("p");
+            tarifa.textContent =
+                `Tarifa referencial: USD ${Number(proveedor.tarifa).toFixed(2)} ` +
+                `· ${proveedor.unidad}`;
+
+            tarjeta.append(nombre, servicio, tarifa);
+            lista.appendChild(tarjeta);
         });
     }
 });
