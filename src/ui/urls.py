@@ -61,6 +61,9 @@ def clientes_view(request):
 def reportes_view(request):
     return render(request, "ui/reportes.html")
 
+def login_view(request):
+    return render(request, "ui/login.html")
+
 urlpatterns = [
     path("", inicio, name="inicio"),
     path("reservas/", reservas, name="reservas"),
@@ -77,4 +80,5 @@ urlpatterns = [
     path("reservas/comparar/", comparar_proveedores, name="comparar_proveedores"),
     path("clientes/", clientes_view, name="clientes"),
     path("reportes/", reportes_view, name="reportes"),
+    path("login/", login_view, name="login"),
 ]

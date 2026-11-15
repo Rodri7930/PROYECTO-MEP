@@ -12,8 +12,13 @@
     <div class="aplicacion">
         <aside class="menu-lateral">
             <div class="marca">
-                <h2>MAGIC EXPERIENCES</h2>
-                <p>PERÚ</p>
+                <a href="/" class="enlace-logo" aria-label="Ir al inicio">
+                    <img
+                        src="{% static 'ui/img/logo-montana.png' %}"
+                        alt="Magic Experiences Perú"
+                        class="logo-menu"
+                    >
+                </a>
             </div>
 
             <nav class="navegacion" aria-label="Menú principal">
@@ -47,11 +52,21 @@
 
         <div class="area-principal">
             <header class="encabezado">
-                <span>Panel de gestión</span>
-                <span class="usuario">Magic Experiences Perú</span>
+                <div class="usuario-superior">
+                    <span class="usuario-avatar">R</span>
+
+                    <div class="usuario-informacion">
+                        <strong>Reservas</strong>
+                        <small>Área de reservas</small>
+                    </div>
+                </div>
+
+                <a href="/login/" class="boton-salir" id="boton-salir">
+                    Salir
+                </a>
             </header>
 
-            <main class="contenido">
+            <main class="contenido{% if request.path == '/' or request.path == '/clientes/' or request.path == '/reportes/' %} fondo-machu-picchu{% endif %}">
                 {% block contenido %}
                 {% endblock %}
             </main>

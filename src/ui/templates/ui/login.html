@@ -1,0 +1,75 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Iniciar sesión | Magic Experiences Perú</title>
+
+    <link rel="stylesheet" href="{% static 'ui/css/login.css' %}">
+</head>
+
+<body>
+    <main class="pantalla-login">
+        <section class="tarjeta-login">
+
+            <div class="contenedor-logo">
+                <img
+                    src="{% static 'ui/img/logo-completo.png' %}"
+                    alt="Magic Experiences Perú"
+                    class="logo-login"
+                >
+            </div>
+
+            <p class="descripcion-login">
+                Sistema interno de reservas
+            </p>
+
+            <form id="form-login">
+
+                <div class="grupo-login">
+                    <label for="usuario-login">Usuario</label>
+
+                    <input
+                        type="email"
+                        id="usuario-login"
+                        name="usuario"
+                        placeholder="usuario@magicexperiencesperu.com"
+                        autocomplete="username"
+                        required
+                    >
+                </div>
+
+                <div class="grupo-login">
+                    <label for="contrasena-login">Contraseña</label>
+
+                    <input
+                        type="password"
+                        id="contrasena-login"
+                        name="contrasena"
+                        placeholder="Ingresa tu contraseña"
+                        autocomplete="current-password"
+                        required
+                    >
+                </div>
+
+                <p
+                    id="mensaje-login"
+                    class="mensaje-login"
+                    role="alert"
+                    hidden
+                ></p>
+
+                <button type="submit" class="boton-ingresar">
+                    Ingresar
+                </button>
+            </form>
+
+        </section>
+    </main>
+
+    <script src="{% static 'ui/js/login.js' %}" defer></script>
+</body>
+</html>
